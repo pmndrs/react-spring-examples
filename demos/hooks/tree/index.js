@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useSpring, animated } from 'react-spring'
-import { Global, Frame, Content, toggle } from './styles'
+import { Frame, Content, toggle } from './styles'
 import ResizeObserver from 'resize-observer-polyfill'
 import * as Icons from './icons'
 

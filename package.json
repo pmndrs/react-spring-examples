@@ -1,6 +1,6 @@
 {
   "name": "react-spring-examples",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "dist/index.js",
   "jsnext:main": "index.js",

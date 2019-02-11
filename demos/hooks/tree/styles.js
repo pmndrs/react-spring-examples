@@ -29,4 +29,4 @@ const toggle = {
   verticalAlign: 'middle'
 }
 
-export { Global, Frame, Content, toggle }
+export { Frame, Content, toggle }

@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import DemoGrid from './components/DemoGrid'
 import Demo from './components/Demo'
-import examples from './components/examples-hooks'
+import examples from './components/examples-renderprops'
 import './styles.css'
 
 const DEBUG = false
-//const DEBUG = 'liquify'
+//const DEBUG = 'nativespring'
 
 ReactDOM.render(
   <DemoGrid fullscreen={!!DEBUG}>

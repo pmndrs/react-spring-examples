@@ -1,12 +1,11 @@
 {
   "name": "react-spring-examples",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "main": "dist/index.js",
   "jsnext:main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --env development",
-    "build": "webpack --progress --colors --env production"
+    "start": "webpack-dev-server --progress --colors --env development"
   },
   "repository": {
     "type": "git",
@@ -43,13 +42,13 @@
     "webpack-dev-server": "^3.1.14"
   },
   "dependencies": {
-    "prop-types": "^15.7.1",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1",
     "@babel/runtime": "^7.3.1",
     "flubber": "^0.4.2",
     "lodash-es": "^4.17.11",
     "lorem-ipsum": "^1.0.6",
+    "prop-types": "^15.7.1",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "react-feather": "^1.1.6",
     "react-loadable": "^5.5.0",
     "react-spring": "^8.0.5",
@@ -57,5 +56,26 @@
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^4.1.3",
     "vec-la": "^1.5.0"
+  },
+  "optionalDependencies": {
+    "@vx/gradient": "0.0.165",
+    "@vx/group": "0.0.170",
+    "@vx/hierarchy": "0.0.179",
+    "@vx/mock-data": "0.0.179",
+    "@vx/responsive": "0.0.179",
+    "@vx/scale": "0.0.179",
+    "@vx/shape": "0.0.179",
+    "antd": "^3.13.2",
+    "classnames": "^2.2.6",
+    "d3-ease": "^1.0.5",
+    "d3-hierarchy": "^1.1.8",
+    "d3-interpolate": "^1.3.2",
+    "d3-scale": "^2.2.2",
+    "d3-shape": "^1.3.4",
+    "delay": "^4.1.0",
+    "random-unicode-emoji": "^1.0.1",
+    "react-measure": "^2.2.4",
+    "react-motion": "^0.5.2",
+    "react-router-dom": "^4.3.1"
   }
 }

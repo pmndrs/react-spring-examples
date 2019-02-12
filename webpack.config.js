@@ -15,7 +15,7 @@ module.exports = mode => {
       rules: [
         { test: /\.css$/, use: ['style-loader', 'css-loader'] },
         {
-          test: /\.jsx?$/,
+          test: /\.(js|jsx|tsx|ts)$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
@@ -32,6 +32,7 @@ module.exports = mode => {
                   },
                 ],
                 '@babel/preset-react',
+                '@babel/preset-typescript',
               ],
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
@@ -45,11 +46,14 @@ module.exports = mode => {
     },
     resolve: {
       modules: [path.resolve('./'), 'node_modules'],
-      extensions: ['.js', '.jsx'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
         'react-spring$': createAlias('react-spring/src/targets/web', 'react-spring'),
         'react-spring/renderprops': createAlias('react-spring/src/rendeprops/targets/web', 'react-spring/renderprops'),
-        'react-spring/renderprops-addons': createAlias('react-spring/src/rendeprops/addons', 'react-spring/renderprops-addons'),
+        'react-spring/renderprops-addons': createAlias(
+          'react-spring/src/rendeprops/addons',
+          'react-spring/renderprops-addons',
+        ),
         react: path.resolve('node_modules/react'),
         'react-dom': path.resolve('node_modules/react-dom'),
         'prop-types': path.resolve('node_modules/prop-types'),

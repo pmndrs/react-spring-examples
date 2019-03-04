@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useTransition, animated as a, config } from 'react-spring'
 import shuffle from 'lodash/shuffle'
-import { useMeasure, useMedia } from './helpers'
+import { useMeasure, useMedia } from '../helpers'
 import data from './data'
 import './styles.css'
 
@@ -13,10 +13,7 @@ export default function App() {
   let heights = new Array(columns).fill(0)
   let gridItems = items.map((child, i) => {
     const column = heights.indexOf(Math.min(...heights))
-    const xy = [
-      (width / columns) * column,
-      (heights[column] += child.height / 2) - child.height / 2,
-    ]
+    const xy = [(width / columns) * column, (heights[column] += child.height / 2) - child.height / 2]
     return { ...child, xy, width: width / columns, height: child.height / 2 }
   })
 
@@ -29,7 +26,10 @@ export default function App() {
     trail: 25,
   })
 
-  useEffect(() => void setInterval(() => set(shuffle), 2000), [])
+  useEffect(() => {
+    const handler = setInterval(() => set(shuffle), 2000)
+    return () => clearInterval(handler)
+  }, [])
 
   return (
     <div className="mgrid">
@@ -38,9 +38,7 @@ export default function App() {
           <a.div
             key={key}
             style={{
-              transform: xy.interpolate(
-                (x, y) => `translate3d(${x}px,${y}px,0)`
-              ),
+              transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
               ...rest,
             }}>
             <div style={{ backgroundImage: item.css }} />

@@ -6,7 +6,10 @@ import './styles.css'
 
 export default function App() {
   const [rows, set] = useState(data)
-  useEffect(() => void setInterval(() => set(shuffle), 3000), [])
+  useEffect(() => {
+    const handler = setInterval(() => set(shuffle), 3000)
+    return () => clearInterval(handler)
+  }, [])
 
   let width = 0
   const transitions = useTransition(
@@ -18,7 +21,7 @@ export default function App() {
       enter: ({ y, width }) => ({ y, width, opacity: 1 }),
       update: ({ y, width }) => ({ y, width }),
       config: { mass: 5, tension: 500, friction: 150 },
-    }
+    },
   )
 
   return (
@@ -33,10 +36,7 @@ export default function App() {
               ...rest,
             }}>
             <div className="list-reorder-cell">
-              <div
-                className="list-reorder-details"
-                style={{ backgroundImage: item.css }}
-              />
+              <div className="list-reorder-details" style={{ backgroundImage: item.css }} />
             </div>
           </animated.div>
         ))}

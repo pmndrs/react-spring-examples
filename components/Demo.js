@@ -1,6 +1,8 @@
 import React from 'react'
 import Loadable from 'react-loadable'
 import styled from 'styled-components'
+import 'intersection-observer' // optional polyfill
+import Observer from '@researchgate/react-intersection-observer'
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -31,24 +33,13 @@ export default class Demo extends React.Component {
     })
   }
 
-  setVisible = visible => this.setState({ visible })
+  setVisible = ({ isIntersecting }) => this.setState({ visible: isIntersecting })
 
-  enter = tag =>
-    this.props.code &&
-    this.props.code[tag] &&
-    this.setState({ code: this.props.code[tag] })
+  enter = tag => this.props.code && this.props.code[tag] && this.setState({ code: this.props.code[tag] })
   leave = tag => this.setState({ code: undefined })
 
   render() {
-    const {
-      title,
-      description,
-      tags,
-      link,
-      code,
-      overlayCode = true,
-      fullscreen = false,
-    } = this.props
+    const { title, description, tags, link, code, overlayCode = true, fullscreen = false } = this.props
     return (
       <Container fullscreen={fullscreen}>
         <Header>
@@ -80,9 +71,11 @@ export default class Demo extends React.Component {
         </Header>
         <Content>
           <ErrorBoundary>
-            <div>
-              <this.component />
-              {/*overlayCode && (
+            <Observer onChange={this.setVisible}>
+              <div>
+                {this.state.visible && <this.component />}
+
+                {/*overlayCode && (
               <Spring
                 native
                 from={{ opacity: 0 }}
@@ -90,7 +83,8 @@ export default class Demo extends React.Component {
                 {props => <Code style={props} children={this.state.code} />}
               </Spring>
             )*/}
-            </div>
+              </div>
+            </Observer>
           </ErrorBoundary>
         </Content>
       </Container>
@@ -108,18 +102,17 @@ const Container = styled('div')`
 
 const Header = styled('div')`
   margin-bottom: 10px;
-  font-family: 'Chinese Quote', -apple-system, system-ui, 'Segoe UI',
-    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
-    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+  font-family: 'Chinese Quote', -apple-system, system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
 
   & > h1 {
-    margin: 0 0 0.17em 0!important;
-    text-transform: uppercase!important;
-    color: rgba(0, 0, 0, 0.85)!important;
-    font-size: 13.6px!important;
-    font-weight: 500!important;
-    line-height: 19.9px!important;
+    margin: 0 0 0.17em 0 !important;
+    text-transform: uppercase !important;
+    color: rgba(0, 0, 0, 0.85) !important;
+    font-size: 13.6px !important;
+    font-weight: 500 !important;
+    line-height: 19.9px !important;
   }
 
   & > p {

@@ -23,8 +23,8 @@ import examples from './components/examples-tests'
 const DEBUG = 'latestbug'
 ````
 5. go to /demos/tests/latestbug and set up a demo that reproduces the problem
-6. npm start, you can now make hot-reload edits in both repos (react-spring and react-spring-examples
-7. you can test integrity by running all examples, edit indes.js again:
+6. npm start, you can now make hot-reload edits in both repos (react-spring and react-spring-examples)
+7. you can test integrity by running all examples, edit index.js again:
 ````
 import examples from './components/examples-hooks'
 

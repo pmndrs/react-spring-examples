@@ -11,4 +11,10 @@ export default [
     link: 'https://codesandbox.io/embed/j0y0vpz59',
     tags: ['useChain'],
   },
+  {
+    name: 'tests/remove_multiple_items',
+    title: 'Remove multiple items',
+    link: '#',
+    tags: ['useTransition'],
+  },
 ]

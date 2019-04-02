@@ -65,7 +65,7 @@ module.exports = mode => {
       contentBase: path.resolve('./'),
       stats: 'errors-only',
     },
-    devtool: undefined,
+    devtool: 'inline-source-map',
     performance: { hints: false },
   }
 }

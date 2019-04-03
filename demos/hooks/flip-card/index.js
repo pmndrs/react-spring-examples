@@ -5,9 +5,9 @@ import './styles.css'
 export default function Card() {
   const [flipped, set] = useState(false)
 
-  //const [, fU] = useState()
   // It should not matter if the component is re-rendered, it shouldn't drop out of sync
-  //useEffect(() => void setInterval(fU, 100), [])
+  // const forceUpdate = useForceUpdate()
+  // useEffect(() => void setInterval(forceUpdate, 100), [])
 
   const { transform, opacity } = useSpring({
     config: { mass: 6, tension: 500, friction: 80 },
@@ -33,4 +33,9 @@ export default function Card() {
       />
     </div>
   )
+}
+
+function useForceUpdate() {
+  const [, f] = useState(false)
+  return useCallback(() => f(v => !v), [])
 }

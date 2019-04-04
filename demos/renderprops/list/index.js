@@ -20,7 +20,9 @@ export default class App extends Component {
         config={{ mass: 4, tension: 100, friction: 40 }}>
         {item => (
           <div className="main-list-cell">
-            <div className="main-list-details" style={{ backgroundImage: item.css }}>
+            <div
+              className="main-list-details"
+              style={{ backgroundImage: item.css }}>
               <h1>{item.name}</h1>
               <p>{item.description}</p>
             </div>

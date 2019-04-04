@@ -26,7 +26,7 @@ const toggle = {
   height: '1em',
   marginRight: 10,
   cursor: 'pointer',
-  verticalAlign: 'middle'
+  verticalAlign: 'middle',
 }
 
 export { Frame, Content, toggle }

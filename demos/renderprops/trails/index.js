@@ -22,7 +22,7 @@ export default class TrailsExample extends React.PureComponent {
           items={items}
           from={{ opacity: 0, x: -100 }}
           to={{ opacity: toggle ? 1 : 0.25, x: toggle ? 0 : 100 }}>
-          {item =>({ x, opacity }) => (
+          {item => ({ x, opacity }) => (
             <animated.div
               className="box"
               onClick={this.toggle}

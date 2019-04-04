@@ -35,7 +35,11 @@ export default class App extends React.Component {
               reset
               from={{ dash: offset }}
               to={{ dash: 0 }}
-              config={{ delay: 1000, duration: 3000, easing: easings.easeCubic }}>
+              config={{
+                delay: 1000,
+                duration: 3000,
+                easing: easings.easeCubic,
+              }}>
               {props => (
                 <animated.path
                   ref={this.path}

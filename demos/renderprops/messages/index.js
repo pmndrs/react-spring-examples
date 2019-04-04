@@ -29,7 +29,9 @@ export default class MessageHub extends React.PureComponent {
   render() {
     return (
       <Main onClick={this.add}>
-        Click here<br/>to create notifications
+        Click here
+        <br />
+        to create notifications
         <Container>
           <Transition
             native

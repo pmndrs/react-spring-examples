@@ -18,7 +18,12 @@ export default class Demo extends React.Component {
             <animated.div
               className="demo1-ball"
               //style={{ transform: `translate3d(${x - 25}px, ${y - 25}px, 0)` }}
-              style={{ transform: interpolate([x,y], (x,y) => `translate3d(${x - 25}px, ${y - 25}px, 0)`) }}
+              style={{
+                transform: interpolate(
+                  [x, y],
+                  (x, y) => `translate3d(${x - 25}px, ${y - 25}px, 0)`
+                ),
+              }}
             />
           )}
         </Trail>

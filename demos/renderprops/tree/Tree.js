@@ -47,30 +47,32 @@ export default class extends React.Component {
             root={root}
             size={[sizeWidth, sizeHeight]}
             separation={(a, b) => (a.parent == b.parent ? 1 : 0.5) / a.depth}>
-            {({ data }) => console.log(data) || (
-              <Group top={origin.y} left={origin.x}>
-                <Links
-                  links={data.links()}
-                  linkType={linkType}
-                  layout={layout}
-                  orientation={orientation}
-                  stepPercent={stepPercent}
-                />
-                <Nodes
-                  nodes={data.descendants()}
-                  layout={layout}
-                  orientation={orientation}
-                  onNodeClick={node => {
-                    if (!node.data.isExpanded) {
-                      node.data.x0 = node.x
-                      node.data.y0 = node.y
-                    }
-                    node.data.isExpanded = !node.data.isExpanded
-                    this.forceUpdate()
-                  }}
-                />
-              </Group>
-            )}
+            {({ data }) =>
+              console.log(data) || (
+                <Group top={origin.y} left={origin.x}>
+                  <Links
+                    links={data.links()}
+                    linkType={linkType}
+                    layout={layout}
+                    orientation={orientation}
+                    stepPercent={stepPercent}
+                  />
+                  <Nodes
+                    nodes={data.descendants()}
+                    layout={layout}
+                    orientation={orientation}
+                    onNodeClick={node => {
+                      if (!node.data.isExpanded) {
+                        node.data.x0 = node.x
+                        node.data.y0 = node.y
+                      }
+                      node.data.isExpanded = !node.data.isExpanded
+                      this.forceUpdate()
+                    }}
+                  />
+                </Group>
+              )
+            }
           </Tree>
         </svg>
       </div>

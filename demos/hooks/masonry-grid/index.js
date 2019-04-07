@@ -1,45 +1,67 @@
 import React, { useState, useEffect } from 'react'
-import { useTransition, animated as a, config } from 'react-spring'
+import { useTransition, animated as a, config, interpolate } from 'react-spring'
 import shuffle from 'lodash/shuffle'
 import { useMeasure, useMedia } from './helpers'
 import data from './data'
 import './styles.css'
+
+const FAST_MODE = false
 
 export default function App() {
   const columns = 6
   const [bind, { width }] = useMeasure()
   const [items, set] = useState(data)
 
-  let heights = new Array(columns).fill(0)
-  let gridItems = items.map((child, i) => {
-    const column = heights.indexOf(Math.min(...heights))
-    const xy = [
-      (width / columns) * column,
-      (heights[column] += child.height / 2) - child.height / 2,
-    ]
-    return { ...child, xy, width: width / columns, height: child.height / 2 }
-  })
+  const heights = new Array(columns).fill(0)
+  const gridItems = width
+    ? items.map((child, i) => {
+        const column = heights.indexOf(Math.min(...heights))
+        const height = child.height / 2
+        return {
+          ...child,
+          xy: [
+            (width / columns) * column,
+            (heights[column] += height) - height,
+          ],
+          width: width / columns,
+          height,
+        }
+      })
+    : []
 
+  const trail = FAST_MODE ? 25 : 80
   const transitions = useTransition(gridItems, item => item.css, {
-    from: ({ xy, width, height }) => ({ xy, width, height, opacity: 0 }),
-    enter: ({ xy, width, height }) => ({ xy, width, height, opacity: 1 }),
-    update: ({ xy, width, height }) => ({ xy, width, height }),
-    leave: { height: 0, opacity: 0 },
+    from: ({ xy, width, height }) => ({
+      xy,
+      width,
+      height,
+      opacity: 0,
+      scale: 0.8,
+    }),
+    enter: (_, i) => ({ scale: 1, opacity: 1, delay: i * trail }),
+    update: ({ xy }) => ({ xy }),
+    leave: { scale: 0.8, opacity: 0 },
     config: config.stiff,
-    trail: 25,
   })
 
-  useEffect(() => void setInterval(() => set(shuffle), 2000), [])
+  useEffect(() => every(FAST_MODE ? 1000 : 2500, () => set(shuffle)), [
+    gridItems.length,
+  ])
 
   return (
-    <div className="mgrid">
+    <div
+      className="mgrid"
+      onClick={() => {
+        set(items.length ? [] : data)
+      }}>
       <div {...bind} className="mgrid-list">
-        {transitions.map(({ item, props: { xy, ...rest }, key }) => (
+        {transitions.map(({ item, props: { xy, scale, ...rest }, key }) => (
           <a.div
             key={key}
             style={{
-              transform: xy.interpolate(
-                (x, y) => `translate3d(${x}px,${y}px,0)`
+              transform: interpolate(
+                [xy, scale],
+                ([x, y], s) => `translate3d(${x}px,${y}px,0) scale(${s})`
               ),
               ...rest,
             }}>
@@ -49,4 +71,9 @@ export default function App() {
       </div>
     </div>
   )
+}
+
+function every(ms, cb) {
+  const id = setInterval(cb, ms)
+  return () => clearInterval(id)
 }

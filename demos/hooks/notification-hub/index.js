@@ -4,6 +4,8 @@ import { X } from 'react-feather'
 import { useTransition } from 'react-spring'
 import { Main, Container, Message, Button, Content, Life } from './styles.js'
 
+const DEBUG = false
+
 let id = 0
 
 function MessageHub({
@@ -17,24 +19,30 @@ function MessageHub({
 
   const transitions = useTransition(items, item => item.key, {
     from: { opacity: 0, height: 0, life: '100%' },
-    enter: item => async next =>
-      await next({ opacity: 1, height: refMap.get(item).offsetHeight }),
-    leave: item => async (next, cancel) => {
-      console.log('  one')
-      cancelMap.set(item, cancel)
-      await next({ life: '0%' })
-      console.log('  two')
-      await next({ opacity: 0 })
-      console.log('  three')
-      await next({ height: 0 })
-      console.log('  done!')
+    enter: item => async (next, stop) => {
+      cancelMap.set(item, () => {
+        stop()
+        setItems(state => state.filter(i => i.key !== item.key))
+      })
+      if (DEBUG) console.log(`  Entering:`, item.key)
+      await next({
+        opacity: 1,
+        height: refMap.get(item).offsetHeight,
+        config,
+      })
+      if (DEBUG)
+        console.log(`  Animating "life" to zero over ${timeout}ms:`, item.key)
+      await next({ life: '0%', config: { duration: timeout } })
+      if (DEBUG) console.log(`  End of sequence:`, item.key)
+      cancelMap.get(item)()
     },
-    onRest: item => {
-      console.log('onRest', item)
-      setItems(state => state.filter(i => i.key !== item.key))
+    leave: item => async next => {
+      if (DEBUG) console.log(`  Animating "opacity" to zero:`, item.key)
+      await next({ opacity: 0, config })
+      if (DEBUG) console.log(`  Animating "height" to zero:`, item.key)
+      await next({ height: 0, config })
+      if (DEBUG) console.log(`  End of sequence:`, item.key)
     },
-    config: (item, state) =>
-      state === 'leave' ? [{ duration: timeout }, config, config] : config,
   })
 
   useEffect(
@@ -53,7 +61,10 @@ function MessageHub({
             <Button
               onClick={e => {
                 e.stopPropagation()
-                cancelMap.has(item) && cancelMap.get(item)()
+                if (cancelMap.has(item)) {
+                  if (DEBUG) console.log(`  Cancelled item:`, item)
+                  cancelMap.get(item)()
+                }
               }}>
               <X size={18} />
             </Button>

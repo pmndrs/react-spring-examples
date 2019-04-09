@@ -10,7 +10,9 @@ const interp = i => r =>
 export default function App() {
   const props = useSpring({
     to: async next => {
-      while (1) await next({ radians: 2 * Math.PI })
+      while (1) {
+        await next({ radians: 2 * Math.PI, reset: true })
+      }
     },
     from: { radians: 0 },
     reset: true,

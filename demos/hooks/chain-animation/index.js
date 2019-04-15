@@ -29,7 +29,7 @@ export default function App() {
     enter: { opacity: 1, transform: 'scale(1)' },
     leave: { opacity: 0, transform: 'scale(0)' },
     trail: 400 / data.length,
-    config: { ...config.stiff, precision: 0.01, cancelDelay: true },
+    config: { ...config.stiff, precision: 0.01 },
     unique: true,
     //reset: true,
     ref: transRef,

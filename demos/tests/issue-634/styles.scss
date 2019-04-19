@@ -1,0 +1,37 @@
+.the-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  padding: 5rem;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.transition-container {
+  background-color: blue;
+  margin: 2rem 0;
+  padding: 1rem 0;
+  .transition-container__inner {
+    min-height: 150px;
+  }
+  .button-primary {
+    z-index: 10;
+  }
+}
+
+.transition-container__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  .transition-container__heading {
+    margin-right: 2rem;
+  }
+}
+
+.transition-container--no-min-height {
+  .transition-container__inner {
+    min-height: 0;
+  }
+}

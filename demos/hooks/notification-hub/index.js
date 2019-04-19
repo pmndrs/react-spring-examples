@@ -20,28 +20,24 @@ function MessageHub({
   const transitions = useTransition(items, item => item.key, {
     from: { opacity: 0, height: 0, life: '100%' },
     enter: item => async (next, stop) => {
+      if (DEBUG) console.log(`  Entering:`, item.key)
       cancelMap.set(item, () => {
+        if (DEBUG) console.log(`  Cancelled:`, item.key)
         stop()
         setItems(state => state.filter(i => i.key !== item.key))
       })
-      if (DEBUG) console.log(`  Entering:`, item.key)
       await next({
         opacity: 1,
         height: refMap.get(item).offsetHeight,
         config,
       })
-      if (DEBUG)
-        console.log(`  Animating "life" to zero over ${timeout}ms:`, item.key)
       await next({ life: '0%', config: { duration: timeout } })
-      if (DEBUG) console.log(`  End of sequence:`, item.key)
       cancelMap.get(item)()
     },
     leave: item => async next => {
-      if (DEBUG) console.log(`  Animating "opacity" to zero:`, item.key)
+      if (DEBUG) console.log(`  Leaving:`, item.key)
       await next({ opacity: 0, config })
-      if (DEBUG) console.log(`  Animating "height" to zero:`, item.key)
       await next({ height: 0, config })
-      if (DEBUG) console.log(`  End of sequence:`, item.key)
     },
   })
 

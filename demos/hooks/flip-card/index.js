@@ -14,15 +14,18 @@ export default function Card() {
     opacity: flipped ? 1 : 0,
     transform: `perspective(1400px) rotateX(${flipped ? 180 : 0}deg)`,
     from: {
-      opacity: flipped ? 1 : 0,
+      opacity: 0,
       transform: `perspective(1400px) rotateX(0deg)`,
     },
   })
+
   return (
     <div className="flip-main" onClick={() => set(state => !state)}>
       <a.div
         className="flip-c flip-back"
-        style={{ opacity: opacity.interpolate(o => 1 - o), transform }}
+        style={{
+          transform,
+        }}
       />
       <a.div
         className="flip-c flip-front"

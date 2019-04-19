@@ -4,7 +4,19 @@
   height: 100%;
   cursor: pointer;
 }
+
 .script-box {
   will-change: width, height, left, top;
   position: relative;
+  overflow: hidden;
+}
+
+.script-running {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  white-space: nowrap;
+  font-size: 14px;
 }

@@ -9,7 +9,8 @@ export default class Demo extends React.Component {
     this.animations.update({ blob2: this.animations.getValues().blob1 })
     this.animations.update({ blob3: this.animations.getValues().blob2 })
   }
-  componentDidMount = () => window.addEventListener('mousemove', this.handleMouseMove)
+  componentDidMount = () =>
+    window.addEventListener('mousemove', this.handleMouseMove)
   handleMouseMove = ({ pageX, pageY }) =>
     // Update the first blob, the "true" starts the animation
     this.animations.update({ blob1: [pageX, pageY] })
@@ -20,9 +21,15 @@ export default class Demo extends React.Component {
     console.log(blob1)
     return (
       <div className="imp">
-        <animated.div style={{ transform: blob3.interpolate(this.transform) }}>3</animated.div>
-        <animated.div style={{ transform: blob2.interpolate(this.transform) }}>2</animated.div>
-        <animated.div style={{ transform: blob1.interpolate(this.transform) }}>1</animated.div>
+        <animated.div style={{ transform: blob3.interpolate(this.transform) }}>
+          3
+        </animated.div>
+        <animated.div style={{ transform: blob2.interpolate(this.transform) }}>
+          2
+        </animated.div>
+        <animated.div style={{ transform: blob1.interpolate(this.transform) }}>
+          1
+        </animated.div>
       </div>
     )
   }

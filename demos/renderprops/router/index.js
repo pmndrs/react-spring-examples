@@ -67,7 +67,6 @@ const Red = ({ style }) => (
         <div>
           <Transition
             native
-  
             items={location}
             keys={location.pathname}
             from={{ transform: 'translateY(100px)', opacity: 0 }}

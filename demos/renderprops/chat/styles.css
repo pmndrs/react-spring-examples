@@ -8,10 +8,13 @@
   padding: 20px;
   overflow: hidden;
   overflow-y: auto;
-  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica,
-    ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
   display: grid;
-  grid-template-columns: minmax(0.1rem, 1fr) minmax(auto, 45ch) minmax(0.1rem, 1fr);
+  grid-template-columns: minmax(0.1rem, 1fr) minmax(auto, 45ch) minmax(
+      0.1rem,
+      1fr
+    );
 }
 
 ul.ul-c {

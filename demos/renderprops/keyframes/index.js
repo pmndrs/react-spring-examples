@@ -8,10 +8,7 @@ import delay from 'delay'
 // Creates a spring with predefined animation slots
 const Sidebar = Keyframes.Spring({
   // Slots can take arrays/chains,
-  peek: [
-    { x: 0, from: { x: -100 }, delay: 500 },
-    { x: -100, delay: 800 },
-  ],
+  peek: [{ x: 0, from: { x: -100 }, delay: 500 }, { x: -100, delay: 800 }],
   // single items,
   open: { delay: 0, x: 0 },
   // or async functions with side-effects
@@ -65,8 +62,8 @@ export default class App extends React.Component {
       this.state.open === undefined
         ? 'peek'
         : this.state.open
-          ? 'open'
-          : 'close'
+        ? 'open'
+        : 'close'
     const icon = this.state.open ? 'fold' : 'unfold'
     return (
       <div style={{ background: 'lightblue', width: '100%', height: '100%' }}>

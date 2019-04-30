@@ -61,8 +61,8 @@ function Nodes({ nodes, layout, orientation, onNodeClick }) {
             className="cx-group"
             style={{
               cursor: 'pointer',
-              pointerEvents: styles.opacity.interpolate(
-                v => (v < 0.5 ? 'none' : 'all')
+              pointerEvents: styles.opacity.interpolate(v =>
+                v < 0.5 ? 'none' : 'all'
               ),
             }}
             width={40}

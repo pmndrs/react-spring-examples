@@ -4,14 +4,18 @@ import { Transition, animated } from 'react-spring/renderprops'
 
 const styles = {
   outer: { position: 'relative', width: '100%', height: '100%' },
-  cell: { position: 'absolute', willChange: 'transform, height, opacity', width: '100%' }
+  cell: {
+    position: 'absolute',
+    willChange: 'transform, height, opacity',
+    width: '100%',
+  },
 }
 
 export default class List extends React.Component {
   static propTypes = {
     items: PropTypes.array,
     keys: PropTypes.func,
-    heights: PropTypes.oneOfType([PropTypes.func, PropTypes.number])
+    heights: PropTypes.oneOfType([PropTypes.func, PropTypes.number]),
   }
   static defaultProps = { heights: 400 }
 
@@ -44,7 +48,7 @@ export default class List extends React.Component {
                 opacity,
                 height,
                 zIndex: displayData.length - i,
-                transform: y.interpolate(y => `translate3d(0,${y}px, 0)`)
+                transform: y.interpolate(y => `translate3d(0,${y}px, 0)`),
               }}
               children={children(child)}
             />

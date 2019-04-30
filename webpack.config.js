@@ -49,9 +49,9 @@ module.exports = mode => {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
         'react-spring$': createAlias('react-spring/src/targets/web', 'react-spring'),
-        'react-spring/renderprops': createAlias('react-spring/src/rendeprops/targets/web', 'react-spring/renderprops'),
+        'react-spring/renderprops': createAlias('react-spring/src/renderprops/targets/web', 'react-spring/renderprops'),
         'react-spring/renderprops-addons': createAlias(
-          'react-spring/src/rendeprops/addons',
+          'react-spring/src/renderprops/addons',
           'react-spring/renderprops-addons',
         ),
         react: path.resolve('node_modules/react'),
@@ -65,7 +65,7 @@ module.exports = mode => {
       contentBase: path.resolve('./'),
       stats: 'errors-only',
     },
-    devtool: undefined,
+    devtool: 'inline-source-map',
     performance: { hints: false },
   }
 }

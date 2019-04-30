@@ -2,28 +2,23 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useSpring, animated } from 'react-spring'
 import './styles.css'
 
+const initialStyles = {
+  left: '0%',
+  top: '0%',
+  width: '100%',
+  height: '100%',
+  background: 'lightgreen',
+  color: 'white',
+}
+
 export default function App() {
-  const [cancelled, setCancelled] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(true)
   const props = useSpring({
-    cancel: !cancelled,
-    from: {
-      left: '0%',
-      top: '0%',
-      width: '0%',
-      height: '0%',
-      background: 'lightgreen',
-      color: 'white',
-    },
+    cancel: !isAnimating,
+    from: initialStyles,
     to: useCallback(async next => {
       while (1) {
-        await next({
-          left: '0%',
-          top: '0%',
-          width: '100%',
-          height: '100%',
-          background: 'lightgreen',
-          color: 'white',
-        })
+        await next(initialStyles)
         await next({
           height: '50%',
           background: 'lightseagreen',
@@ -71,11 +66,11 @@ export default function App() {
 
   const { color, ...boxStyle } = props
   return (
-    <div className="script-main" onClick={() => setCancelled(x => !x)}>
+    <div className="script-main" onClick={() => setIsAnimating(x => !x)}>
       <animated.div className="script-box" style={boxStyle}>
-        <div className="script-running" style={{ color }}>
-          {cancelled ? 'Click to stop' : 'Click to start over'}
-        </div>
+        <animated.div className="script-running" style={{ color }}>
+          {isAnimating ? 'Click to stop' : 'Click to start over'}
+        </animated.div>
       </animated.div>
     </div>
   )

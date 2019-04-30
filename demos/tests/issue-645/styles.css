@@ -1,0 +1,17 @@
+.movable {
+  width: 100px;
+  height: 100px;
+  background: hotpink;
+  border-radius: 50%;
+  cursor: -webkit-grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  white-space: pre;
+  will-change: transform;
+}
+
+.movable:active {
+  cursor: -webkit-grabbing;
+}

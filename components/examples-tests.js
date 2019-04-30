@@ -17,17 +17,32 @@ export default [
   },
   {
     name: 'tests/issue-631',
-    title: 'Issue #631',
+    title: '',
     tags: ['useChain'],
   },
   {
     name: 'tests/issue-634',
-    title: 'Issue #634',
+    title: '',
     tags: ['useChain'],
   },
   {
     name: 'tests/issue-639',
-    title: 'Issue #639',
+    title: '',
     tags: ['useTransition'],
+  },
+  {
+    name: 'tests/issue-645',
+    title: '',
+    tags: ['useSprings', 'useGesture'],
+  },
+  {
+    name: 'tests/issue-650',
+    title: '',
+    tags: ['useTransition'],
+  },
+  {
+    name: 'tests/issue-657',
+    title: '',
+    tags: ['useSprings'],
   },
 ]

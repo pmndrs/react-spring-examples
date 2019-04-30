@@ -14,7 +14,7 @@ export default function App() {
 
   // 1. create spring-refs, which will refer to the springs Controller
   const springRef = useRef()
-  const { size, opacity, ...rest } = useSpring({
+  const { size, background } = useSpring({
     from: { size: '20%', background: 'hotpink' },
     size: open ? '80%' : '20%',
     background: open ? 'white' : 'hotpink',
@@ -35,15 +35,13 @@ export default function App() {
     ref: transRef,
   })
 
-  //console.log(open ? "container > I T E M S" : "I T E M S > container")
-
   const chain = [springRef, transRef]
   useChain(open ? chain : chain.reverse(), [0, open ? 0.1 : 0.5])
 
   return (
     <Main>
       <Sidebar
-        style={{ ...rest, width: size, height: size }}
+        style={{ width: size, height: size, background }}
         onClick={() => set(open => !open)}>
         {transitions.map(({ item, key, props }) => (
           <Item key={key} style={{ ...props, background: item.css }} />
@@ -76,18 +74,6 @@ const Sidebar = styled(animated.div)`
   will-change: width, height;
   box-shadow: 0px 10px 10px -5px rgba(0, 0, 0, 0.05);
   box-sizing: border-box;
-`
-
-const Content = styled(animated.div)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
 
 const Item = styled(animated.div)`

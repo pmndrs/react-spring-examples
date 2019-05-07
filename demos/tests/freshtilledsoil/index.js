@@ -68,14 +68,14 @@ const TransitionGrid = ({ visible, items, removeItem }) => {
 
   const itemsRef = useRef()
   const itemsTransition = useTransition(visible ? items : [], null, {
-    config: { ...config.stiff, precision: 0.01, cancelDelay: false },
+    config: { ...config.stiff, precision: 0.01 },
     from: { opacity: 0, scale: 0 },
     enter: { opacity: 1, scale: 1 },
     leave: { opacity: 0, scale: 0 },
     trail: 400 / items.length,
     ref: itemsRef,
     unique: true,
-    reset: true,
+    // reset: true,
   })
 
   useEffect(() => {

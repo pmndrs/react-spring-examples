@@ -7,7 +7,7 @@ const AnimFeDisplacementMap = animated('feDisplacementMap')
 
 export default function App() {
   const [open, toggle] = useState(false)
-  const { freq, scale, transform, opacity } = useSpring({
+  const [{ freq, scale, transform, opacity }] = useSpring({
     reverse: open,
     from: {
       scale: 10,
@@ -17,7 +17,7 @@ export default function App() {
     },
     to: { scale: 150, opacity: 1, transform: 'scale(1)', freq: '0.0, 0.0' },
     config: { duration: 3000 },
-  })
+  }, [open])
 
   return (
     <div className="liquid" onClick={() => toggle(!open)}>

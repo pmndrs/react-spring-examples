@@ -14,13 +14,13 @@ export default function App() {
 
   // 1. create spring-refs, which will refer to the springs Controller
   const springRef = useRef()
-  const { size, opacity, ...rest } = useSpring({
+  const [{ size, opacity, ...rest }] = useSpring({
     from: { size: '20%', background: 'hotpink' },
     size: open ? '80%' : '20%',
     background: open ? 'white' : 'hotpink',
     config: { ...config.stiff, precision: 0.01 },
     ref: springRef,
-  })
+  }, [open])
 
   // 2. create transition-refs
   const transRef = useRef()

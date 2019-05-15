@@ -3,7 +3,7 @@ import { useSpring, animated } from 'react-spring'
 import './styles.css'
 
 export default function App() {
-  const props = useSpring({
+  const [props] = useSpring({
     from: {
       left: '0%',
       top: '0%',
@@ -34,7 +34,7 @@ export default function App() {
         await next({ width: '100%', background: 'lightslategrey' })
       }
     },
-  })
+  }, [])
   return (
     <div className="script-main">
       <animated.div className="script-box" style={props} />

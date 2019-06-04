@@ -59,13 +59,17 @@ module.exports = mode => {
       modules: [path.resolve('./'), 'node_modules'],
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
+        shared: createAlias(
+          path.resolve('../packages/shared/src'),
+          '@react-spring/shared'
+        ),
+        'react-spring$': createAlias(
+          path.resolve('../packages/react-spring'),
+          '@react-spring/web'
+        ),
         react: path.resolve('node_modules/react'),
         'react-dom': path.resolve('node_modules/react-dom'),
         'prop-types': path.resolve('node_modules/prop-types'),
-        'react-spring$': createAlias(
-          '../packages/react-spring',
-          '@react-spring/web'
-        ),
       },
     },
     plugins: [

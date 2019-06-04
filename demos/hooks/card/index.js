@@ -19,6 +19,7 @@ const wheel = y => {
 }
 
 export default function Card() {
+  const root = React.useRef(null)
   const [{ rxrys, coord, pinch }, set] = useSpring(() => ({
     rxrys: [0, 0, 1],
     coord: [0, 0],
@@ -37,17 +38,27 @@ export default function Card() {
     onMove: ({ xy, dragging }) =>
       !dragging && set({ rxrys: calc(...xy, ...coord.getValue()) }),
     onHover: ({ hovering }) => !hovering && set({ rxrys: [0, 0, 1] }),
-    onWheel: ({ local: [, y] }) => setWheel({ wheelY: y }),
+    onWheel: ({ local: [, y], last }) => {
+      setWheel({ wheelY: y })
+    },
   })
 
   React.useEffect(() => {
-    document.addEventListener('gesturestart', e => e.preventDefault(), {
+    root.current.addEventListener('gesturestart', e => e.preventDefault(), {
       passive: false,
     })
+    return () =>
+      root.current.removeEventListener(
+        'gesturestart',
+        e => e.preventDefault(),
+        {
+          passive: false,
+        }
+      )
   }, [])
 
   return (
-    <div className="card flex-content">
+    <div ref={root} className="card flex-content">
       <animated.div
         className={`${drag ? 'dragging' : ''}`}
         {...bind()}

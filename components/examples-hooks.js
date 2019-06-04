@@ -5,7 +5,7 @@ export default [
     tags: ['useSprings'],
   },
   {
-    name: 'hooks/card',
+    name: 'hooks/multi-card',
     title: 'Multi-gesture card',
     tags: ['useSprings'],
   },

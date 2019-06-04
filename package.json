@@ -1,7 +1,7 @@
 {
-  "name": "react-spring-examples",
-  "version": "1.0.7",
-  "description": "",
+  "name": "react-use-gesture-examples",
+  "version": "1.0.0",
+  "description": "Examples to help contributing to react-use-gesture",
   "main": "dist/index.js",
   "jsnext:main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drcmda/react-springy-parallax.git"
+    "url": "git+https://github.com/dbismut/react-use-gesture-examples.git"
   },
   "keywords": [
     "parallax",
@@ -31,9 +31,9 @@
   "author": "Paul Henschel",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/drcmda/react-springy-parallax/issues"
+    "url": "https://github.com/dbismut/react-use-gesture-examples/issues"
   },
-  "homepage": "https://github.com/drcmda/react-springy-parallax#readme",
+  "homepage": "https://github.com/dbismut/react-use-gesture-examples",
   "devDependencies": {
     "@babel/cli": "7.2.3",
     "@babel/core": "7.2.2",
@@ -64,37 +64,17 @@
     "flubber": "^0.4.2",
     "intersection-observer": "^0.5.1",
     "lodash-es": "^4.17.11",
+    "lodash-move": "^1.1.1",
     "lorem-ipsum": "^1.0.6",
     "prop-types": "^15.7.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-feather": "^1.1.6",
     "react-loadable": "^5.5.0",
-    "react-spring": "^8.0.5",
-    "react-with-gesture": "^4.0.2",
+    "react-spring": "^8.0.20",
+    "react-use-gesture": "^5.0.2",
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^4.1.3",
     "vec-la": "^1.5.0"
-  },
-  "optionalDependencies": {
-    "@vx/gradient": "0.0.165",
-    "@vx/group": "0.0.170",
-    "@vx/hierarchy": "0.0.179",
-    "@vx/mock-data": "0.0.179",
-    "@vx/responsive": "0.0.179",
-    "@vx/scale": "0.0.179",
-    "@vx/shape": "0.0.179",
-    "antd": "^3.13.2",
-    "classnames": "^2.2.6",
-    "d3-ease": "^1.0.5",
-    "d3-hierarchy": "^1.1.8",
-    "d3-interpolate": "^1.3.2",
-    "d3-scale": "^2.2.2",
-    "d3-shape": "^1.3.4",
-    "delay": "^4.1.0",
-    "random-unicode-emoji": "^1.0.1",
-    "react-measure": "^2.2.4",
-    "react-motion": "^0.5.2",
-    "react-router-dom": "^4.3.1"
   }
 }

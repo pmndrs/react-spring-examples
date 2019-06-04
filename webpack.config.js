@@ -10,7 +10,11 @@ module.exports = mode => {
   return {
     mode,
     entry: 'index.js',
-    output: { filename: 'bundle.js', path: path.resolve('./dist') },
+    output: {
+      filename: 'bundle.[contenthash].js',
+      path: path.resolve('./dist'),
+      devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+    },
     module: {
       rules: [
         {

@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CheckerPlugin } = require('awesome-typescript-loader')
 const webpack = require('webpack')
 const fs = require('fs')
 
@@ -18,7 +19,11 @@ module.exports = mode => {
         },
         { test: /\.css$/, use: ['style-loader', 'css-loader'] },
         {
-          test: /\.(js|jsx|tsx|ts)$/,
+          test: /\.tsx?$/,
+          use: ['awesome-typescript-loader'],
+        },
+        {
+          test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
@@ -35,7 +40,6 @@ module.exports = mode => {
                   },
                 ],
                 '@babel/preset-react',
-                '@babel/preset-typescript',
               ],
               plugins: [
                 '@babel/plugin-syntax-dynamic-import',
@@ -60,7 +64,10 @@ module.exports = mode => {
         ),
       },
     },
-    plugins: [new HtmlWebpackPlugin({ template: 'template.html' })],
+    plugins: [
+      new CheckerPlugin(),
+      new HtmlWebpackPlugin({ template: 'template.html' }),
+    ],
     devServer: {
       hot: false,
       contentBase: path.resolve('./'),

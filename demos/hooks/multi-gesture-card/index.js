@@ -20,6 +20,7 @@ const wheel = y => {
 
 export default function Card() {
   const root = React.useRef(null)
+  const domTarget = React.useRef(null)
   const [{ rxrys, coord, pinch }, set] = useSpring(() => ({
     rxrys: [0, 0, 1],
     coord: [0, 0],
@@ -30,18 +31,23 @@ export default function Card() {
   const [{ wheelY }, setWheel] = useSpring(() => ({ wheelY: 0 }))
   const [drag, setDrag] = React.useState(false)
 
-  const bind = useGesture({
-    onDragStart: () => setDrag(true),
-    onDrag: ({ local }) => set({ coord: local, rxrys: [0, 0, 1] }),
-    onDragEnd: () => setDrag(false),
-    onPinch: ({ local: [d, a] }) => set({ pinch: [d / 200, a] }),
-    onMove: ({ xy, dragging }) =>
-      !dragging && set({ rxrys: calc(...xy, ...coord.getValue()) }),
-    onHover: ({ hovering }) => !hovering && set({ rxrys: [0, 0, 1] }),
-    onWheel: ({ local: [, y], last }) => {
-      setWheel({ wheelY: y })
+  const bind = useGesture(
+    {
+      onDragStart: () => setDrag(true),
+      onDrag: ({ local }) => set({ coord: local, rxrys: [0, 0, 1] }),
+      onDragEnd: () => setDrag(false),
+      onPinch: ({ local: [d, a] }) => set({ pinch: [d / 200, a] }),
+      onMove: ({ xy, dragging }) =>
+        !dragging && set({ rxrys: calc(...xy, ...coord.getValue()) }),
+      onHover: ({ hovering }) => !hovering && set({ rxrys: [0, 0, 1] }),
+      onWheel: ({ local: [, y], last }) => {
+        setWheel({ wheelY: y })
+      },
     },
-  })
+    { domTarget }
+  )
+
+  React.useEffect(bind, [bind])
 
   React.useEffect(() => {
     root.current.addEventListener('gesturestart', e => e.preventDefault(), {
@@ -51,17 +57,16 @@ export default function Card() {
       root.current.removeEventListener(
         'gesturestart',
         e => e.preventDefault(),
-        {
-          passive: false,
-        }
+        { passive: false }
       )
   }, [])
 
   return (
     <div ref={root} className="card flex-content">
       <animated.div
+        ref={domTarget}
         className={`${drag ? 'dragging' : ''}`}
-        {...bind()}
+        // {...bind()}
         style={{ transform: interpolate([coord, rxrys, pinch], trans) }}>
         <animated.div style={{ transform: wheelY.interpolate(wheel) }}>
           {imgs.map((img, i) => (

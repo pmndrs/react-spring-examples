@@ -1,5 +1,11 @@
 export default [
   {
+    name: 'hooks/simple',
+    title: 'Simple Square',
+    tags: ['useSprings'],
+  },
+  ,
+  {
     name: 'hooks/draggable-list',
     title: 'Draggable list',
     tags: ['useSprings'],

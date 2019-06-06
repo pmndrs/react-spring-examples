@@ -1,0 +1,6 @@
+.simple > div {
+  width: 80px;
+  height: 80px;
+  background: hotpink;
+  border-radius: 8px;
+}

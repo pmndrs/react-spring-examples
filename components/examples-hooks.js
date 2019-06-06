@@ -19,4 +19,9 @@ export default [
     title: 'Deck of cards',
     tags: ['useSprings'],
   },
+  {
+    name: 'hooks/compilation',
+    title: 'Compilation',
+    tags: ['useSprings'],
+  },
 ]

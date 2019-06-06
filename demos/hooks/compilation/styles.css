@@ -1,0 +1,130 @@
+.compilation {
+  height: auto;
+}
+
+.compilation .counters {
+  width: 200px;
+}
+
+.compilation .counter {
+  position: relative;
+  font-family: monospace;
+  background: #eee;
+  padding: 5px;
+  margin: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 0.8em;
+}
+
+.compilation .boxes {
+  flex: 1;
+  font-size: 0.6em;
+}
+
+.compilation .box {
+  height: 60px;
+  width: 60px;
+}
+
+.compilation .box.drag {
+  background: lightskyblue;
+  cursor: grab;
+  z-index: 1000;
+  position: relative;
+}
+
+.compilation .boxes > .hover {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background: bisque;
+  margin: 10px;
+  cursor: move;
+}
+
+.compilation .dot {
+  height: 20px;
+  width: 20px;
+  background: #41a8f2;
+  opacity: 0.8;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+.compilation .boxes > .wheel {
+  position: relative;
+  height: 80px;
+  width: 80px;
+  background: sandybrown;
+  margin-left: 10px;
+  cursor: ns-resize;
+  overflow: hidden;
+}
+
+.compilation .squares {
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.compilation .squares > div {
+  background: white;
+  opacity: 0.5;
+  height: 20px;
+  width: 80%;
+  margin: 2px;
+}
+
+.compilation .boxes > .scroll {
+  position: relative;
+  height: 80vh;
+  width: 10vw;
+  background: darkseagreen;
+}
+
+.compilation .scroll > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: all-scroll;
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  scrollbar-width: none;
+}
+
+.compilation .scroll > .content > div {
+  height: 2000vh;
+  width: 1000vw;
+}
+
+.compilation .scroll > .indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  transform-origin: bottom;
+}
+
+.compilation .scroll-indicator {
+  position: fixed;
+  background-color: cornflowerblue;
+  border-radius: 2px;
+}
+
+.compilation .scroll-indicator.y {
+  right: 14px;
+  top: 4px;
+  width: 5px;
+}
+
+.compilation .scroll-indicator.x {
+  left: 4px;
+  bottom: 14px;
+  height: 5px;
+}

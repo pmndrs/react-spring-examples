@@ -37,28 +37,29 @@ const style = (order, down, originalIndex, curIndex, y) => index =>
       }
 
 export default function DraggableList({
-  items = 'Lorem ipsum dolor sit'.split(' '),
+  items = 'Lorem Ipsum Dolor Sit Amet'.split(' '),
 }) {
   const order = useRef(items.map((_, index) => index))
   const [springs, setSprings] = useSprings(items.length, style(order.current))
 
-  const bind = useGesture(({ args: [originalIndex], down, delta: [, y] }) => {
-    const curIndex = order.current.indexOf(originalIndex)
-    const curRow = clamp(
-      Math.round((curIndex * BASE_HEIGHT + y) / BASE_HEIGHT),
-      0,
-      items.length - 1
-    )
-    const newOrder = swap(order.current, curIndex, curRow)
+  const bind = useGesture({
+    onDnd: ({ args: [originalIndex], down, delta: [, y] }) => {
+      const curIndex = order.current.indexOf(originalIndex)
+      const curRow = clamp(
+        Math.round((curIndex * BASE_HEIGHT + y) / BASE_HEIGHT),
+        0,
+        items.length - 1
+      )
+      const newOrder = swap(order.current, curIndex, curRow)
 
-    setSprings(style(newOrder, down, originalIndex, curIndex, y))
-    if (!down) order.current = newOrder
+      setSprings(style(newOrder, down, originalIndex, curIndex, y))
+      if (!down) order.current = newOrder
+    },
   })
 
   return (
     <div className="dnd flex-content" style={{ height: items.length * 100 }}>
       {springs.map(({ zIndex, shadow, y, scale }, index) => {
-        const { label } = items[index]
         return (
           <animated.div
             {...bind(index)}
@@ -68,12 +69,10 @@ export default function DraggableList({
               boxShadow: shadow.interpolate(
                 s => `rgba(0, 0, 0, 0.15) 0px ${s}px ${s}px 0px`
               ),
-              transform: interpolate(
-                [y, scale],
-                (y, s) => `translate3d(0,${y}px,0) scale(${s})`
-              ),
+              transform: interpolate([y, scale], (y, s) => {
+                return `translate3d(0,${y}px,0) scale(${s})`
+              }),
             }}
-            draggable={true}
             onDragOver={e => {
               console.log('onDragOver', index)
             }}>

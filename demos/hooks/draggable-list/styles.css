@@ -15,18 +15,18 @@
   letter-spacing: 2px;
 }
 
-.drag-list.flex-content > div:nth-child(1) {
+.drag-list > div:nth-child(1) {
   background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
 }
 
-.drag-list.flex-content > div:nth-child(2) {
+.drag-list > div:nth-child(2) {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
 
-.drag-list.flex-content > div:nth-child(3) {
+.drag-list > div:nth-child(3) {
   background: linear-gradient(135deg, #5ee7df 0%, #b490ca 100%);
 }
 
-.drag-list.flex-content > div:nth-child(4) {
+.drag-list > div:nth-child(4) {
   background: linear-gradient(135deg, #c3cfe2 0%, #c3cfe2 100%);
 }

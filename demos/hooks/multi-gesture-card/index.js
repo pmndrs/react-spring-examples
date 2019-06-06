@@ -62,7 +62,7 @@ export default function Card() {
   }, [])
 
   return (
-    <div ref={root} className="card flex-content">
+    <div ref={root} className="multi-gesture-card flex-content">
       <animated.div
         ref={domTarget}
         className={`${drag ? 'dragging' : ''}`}

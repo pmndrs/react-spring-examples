@@ -39,7 +39,7 @@ export default function Viewpager() {
     }
   )
   return (
-    <div className="flex-content">
+    <div className="flex-content viewpager">
       {props.map(({ x, display, sc }, i) => (
         <animated.div
           {...bind()}

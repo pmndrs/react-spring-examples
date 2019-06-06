@@ -1,4 +1,4 @@
-.card.flex-content > div {
+.multi-gesture-card.flex-content > div {
   position: relative;
   width: 30vw;
   height: 30vw;
@@ -12,28 +12,28 @@
   overflow: hidden;
 }
 
-.card.flex-content > div > div {
+.multi-gesture-card > div > div {
   will-change: transform;
   height: 100%;
   margin: 0vw 0;
 }
 
-.card.flex-content > div > div > * {
+.multi-gesture-card > div > div > * {
   height: 100%;
   background-size: cover;
   background-position: center center;
   margin: 0vw 0;
 }
 
-.card.flex-content > div.dragging {
+.multi-gesture-card > div.dragging {
   cursor: grabbing;
 }
 
-.card.flex-content > div.disabled {
+.multi-gesture-card > div.disabled {
   opacity: 0.5;
   cursor: default;
 }
 
-.card.flex-content > div:hover {
+.multi-gesture-card > div:hover {
   box-shadow: 0px 30px 100px -10px rgba(0, 0, 0, 0.4);
 }

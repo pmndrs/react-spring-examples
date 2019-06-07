@@ -23,6 +23,7 @@ const style = (order, down, originalIndex, curIndex, y) => index =>
   down && index === originalIndex
     ? {
         y: curIndex * BASE_HEIGHT + y,
+        pointerEvents: 'none',
         scale: 1.01,
         zIndex: '1',
         shadow: 5,
@@ -30,6 +31,7 @@ const style = (order, down, originalIndex, curIndex, y) => index =>
       }
     : {
         y: order.indexOf(index) * BASE_HEIGHT,
+        pointerEvents: 'auto',
         scale: 1,
         zIndex: '0',
         shadow: 1,
@@ -43,7 +45,7 @@ export default function DraggableList({
   const [springs, setSprings] = useSprings(items.length, style(order.current))
 
   const bind = useGesture({
-    onDnd: ({ args: [originalIndex], down, delta: [, y] }) => {
+    onDrag: ({ args: [originalIndex], down, delta: [, y] }) => {
       const curIndex = order.current.indexOf(originalIndex)
       const curRow = clamp(
         Math.round((curIndex * BASE_HEIGHT + y) / BASE_HEIGHT),
@@ -59,22 +61,21 @@ export default function DraggableList({
 
   return (
     <div className="dnd flex-content" style={{ height: items.length * 100 }}>
-      {springs.map(({ zIndex, shadow, y, scale }, index) => {
+      {springs.map(({ zIndex, shadow, y, scale, pointerEvents }, index) => {
         return (
           <animated.div
             {...bind(index)}
             key={index}
+            onTouchStartCapture={e => console.log('ontouchstart')}
             style={{
               zIndex,
+              pointerEvents,
               boxShadow: shadow.interpolate(
                 s => `rgba(0, 0, 0, 0.15) 0px ${s}px ${s}px 0px`
               ),
               transform: interpolate([y, scale], (y, s) => {
                 return `translate3d(0,${y}px,0) scale(${s})`
               }),
-            }}
-            onDragOver={e => {
-              console.log('onDragOver', index)
             }}>
             {items[index]}
           </animated.div>

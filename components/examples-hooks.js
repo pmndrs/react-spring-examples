@@ -4,7 +4,16 @@ export default [
     title: 'Simple Square',
     tags: ['useSprings'],
   },
-  ,
+  {
+    name: 'hooks/lock',
+    title: 'Lock',
+    tags: ['useSprings'],
+  },
+  {
+    name: 'hooks/boundaries',
+    title: 'Boundaries',
+    tags: ['useSprings'],
+  },
   {
     name: 'hooks/draggable-list',
     title: 'Draggable list',

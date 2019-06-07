@@ -1,0 +1,20 @@
+{
+  "include": ["demos/**/*"],
+  "compilerOptions": {
+    "jsx": "react",
+    "lib": ["es2017", "dom"],
+    "target": "es2017",
+    "baseUrl": ".",
+    "paths": {
+      "react-spring": ["../packages/web", "./node_modules/@react-spring/web"]
+    },
+    "noEmitOnError": true,
+    "preserveSymlinks": true,
+    "allowSyntheticDefaultImports": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "noImplicitAny": false,
+    "strict": true
+  }
+}

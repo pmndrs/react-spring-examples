@@ -114,12 +114,12 @@ const Header = styled('div')`
     'Segoe UI Symbol';
 
   & > h1 {
-    margin: 0 0 0.17em 0!important;
-    text-transform: uppercase!important;
-    color: rgba(0, 0, 0, 0.85)!important;
-    font-size: 13.6px!important;
-    font-weight: 500!important;
-    line-height: 19.9px!important;
+    margin: 0 0 0.17em 0 !important;
+    text-transform: uppercase !important;
+    color: rgba(0, 0, 0, 0.85) !important;
+    font-size: 13.6px !important;
+    font-weight: 500 !important;
+    line-height: 19.9px !important;
   }
 
   & > p {

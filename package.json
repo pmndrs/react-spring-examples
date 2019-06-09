@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "jsnext:main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --progress --colors --env development"
+    "start": "webpack-dev-server --progress --colors --mode development"
   },
   "husky": {
     "hooks": {

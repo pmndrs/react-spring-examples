@@ -1,12 +1,14 @@
 {
-  "include": ["demos/**/*"],
   "compilerOptions": {
     "jsx": "react",
     "lib": ["es2017", "dom"],
     "target": "es2017",
     "baseUrl": ".",
     "paths": {
-      "react-spring": ["../packages/web", "./node_modules/@react-spring/web"]
+      "react-spring": [
+        "../targets/web/src/index.ts",
+        "./node_modules/@react-spring/web/index.js"
+      ]
     },
     "noEmitOnError": true,
     "preserveSymlinks": true,

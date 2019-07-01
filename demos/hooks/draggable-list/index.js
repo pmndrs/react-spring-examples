@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import clamp from 'lodash/clamp'
 import { useGesture } from 'react-with-gesture'
-import { useSprings, animated, interpolate } from 'react-spring'
+import { useSprings, animated, to } from 'react-spring'
 import './styles.css'
 
 // Swaps two values in an array
@@ -57,10 +57,10 @@ export default function DraggableList({
             key={i}
             style={{
               zIndex: zIndex,
-              boxShadow: shadow.interpolate(
+              boxShadow: shadow.to(
                 s => `rgba(0, 0, 0, 0.2) 0px ${s}px ${2 * s}px 0px`
               ),
-              transform: interpolate(
+              transform: to(
                 [y, scale],
                 (y, s) => `translate3d(0,${y}px,0) scale(${s})`
               ),

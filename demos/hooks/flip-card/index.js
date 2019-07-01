@@ -31,7 +31,7 @@ export default function Card() {
         className="flip-c flip-front"
         style={{
           opacity,
-          transform: transform.interpolate(t => `${t} rotateX(180deg)`),
+          transform: transform.to(t => `${t} rotateX(180deg)`),
         }}
       />
     </div>

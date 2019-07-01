@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSprings, animated, interpolate } from 'react-spring'
+import { useSprings, animated, to } from 'react-spring'
 import { useGesture } from 'react-with-gesture'
 import './styles.css'
 
@@ -13,7 +13,7 @@ const cards = [
 ]
 
 // These two are just helpers, they curate spring data, values that are later being interpolated into css
-const to = i => ({
+const randomTo = i => ({
   x: 0,
   y: i * -4,
   scale: 1,
@@ -31,7 +31,7 @@ export default function Deck() {
   const [gone] = useState(() => new Set())
   // Create a bunch of springs that contain x/y-position, rotation and scale - using the helpers above
   const [props, set] = useSprings(cards.length, i => ({
-    ...to(i),
+    ...randomTo(i),
     from: from(i),
   }))
 
@@ -73,7 +73,7 @@ export default function Deck() {
 
       if (!down && gone.size === cards.length) {
         gone.clear()
-        setTimeout(() => set(i => to(i)), 1000)
+        setTimeout(() => set(i => randomTo(i)), 1000)
       }
     }
   )
@@ -85,16 +85,13 @@ export default function Deck() {
         <animated.div
           key={i}
           style={{
-            transform: interpolate(
-              [x, y],
-              (x, y) => `translate3d(${x}px,${y}px,0)`
-            ),
+            transform: to([x, y], (x, y) => `translate3d(${x}px,${y}px,0)`),
           }}>
           {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
           <animated.div
             {...bind(i)}
             style={{
-              transform: interpolate([rot, scale], trans),
+              transform: to([rot, scale], trans),
               backgroundImage: `url(${cards[i]})`,
             }}
           />

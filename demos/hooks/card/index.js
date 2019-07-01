@@ -21,7 +21,7 @@ export default function Card() {
     <div className="card-main" ref={ref}>
       <animated.div
         className="card"
-        style={{ transform: props.xys.interpolate(trans) }}
+        style={{ transform: props.xys.to(trans) }}
         onMouseLeave={() => set({ xys: [0, 0, 1] })}
         onMouseMove={e => {
           const rect = ref.current.getBoundingClientRect()

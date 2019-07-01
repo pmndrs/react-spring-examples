@@ -24,7 +24,7 @@ export default function App() {
         <animated.div
           key={i}
           className="script-bf-box"
-          style={{ transform: props.radians.interpolate(interp(i)) }}
+          style={{ transform: props.radians.to(interp(i)) }}
         />
       ))}
     </div>

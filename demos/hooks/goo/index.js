@@ -33,10 +33,7 @@ export default function Goo() {
       <div className="hooks-main">
         <div className="hooks-filter">
           {trail.map((props, index) => (
-            <anim.div
-              key={index}
-              style={{ transform: props.xy.interpolate(trans) }}
-            />
+            <anim.div key={index} style={{ transform: props.xy.to(trans) }} />
           ))}
         </div>
       </div>

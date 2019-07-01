@@ -11,7 +11,7 @@ export default function App() {
     <div className="auto-container" {...bind} onClick={() => toggle(!open)}>
       <animated.div className="auto-fill" style={props} />
       <animated.div className="auto-content">
-        {props.width.interpolate(x => `${x.toFixed(0)}px`)}
+        {props.width.to(x => `${x.toFixed(0)}px`)}
       </animated.div>
     </div>
   )

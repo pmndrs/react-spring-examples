@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react'
-import { useSpring, animated as a, interpolate } from 'react-spring'
+import { useSpring, animated as a, to } from 'react-spring'
 import lorem from 'lorem-ipsum'
 import './styles.css' // Icon made by Freepik from www.flaticon.com
 
@@ -8,35 +8,35 @@ const text = lorem({ count: 200 })
 export default function App() {
   const ref = useRef(null)
   const [{ st, xy }, set] = useSpring(() => ({ st: 0, xy: [0, 0] }))
-  const interpBg = xy.interpolate(
+  const interpBg = xy.to(
     (x, y) =>
       `perspective(400px) rotateY(${x / 40}deg) rotateX(${-y /
         40}deg) translate3d(-50%, -50%, 0)`
   )
-  const interpFace = st.interpolate(o => `translate(90,${105 + o / 4})`)
-  const interpEye = interpolate(
+  const interpFace = st.to(o => `translate(90,${105 + o / 4})`)
+  const interpEye = to(
     [st, xy],
     (o, xy) =>
       `translate(${xy[0] / 20 + 157},${xy[1] / 20 + 80 + o / 2}) scale(0.8)`
   )
-  const interpIris = interpolate(
+  const interpIris = to(
     [st, xy],
     (o, xy) => `translate(${xy[0] / 20},${xy[1] / 20 + -10 + o / 8})`
   )
-  const interpPupil = interpolate(
+  const interpPupil = to(
     [st, xy],
     (o, xy) => `translate(${xy[0] / 15},${xy[1] / 15 + -10 + o / 8})`
   )
-  const interpSpot = interpolate(
+  const interpSpot = to(
     [st, xy],
     (o, xy) => `translate(${8 + -xy[0] / 70},${-xy[1] / 70 + -10 + o / 8})`
   )
-  const interpMouth = interpolate(
+  const interpMouth = to(
     [st, xy],
     (o, xy) =>
       `translate(${xy[0] / 15 + 208},${xy[1] / 10 + 250 + o / 1.7}) scale(0.5)`
   )
-  const interpHair = st.interpolate(o => `translate(79,${o / 4})`)
+  const interpHair = st.to(o => `translate(79,${o / 4})`)
   const onScroll = useCallback(e => set({ st: e.target.scrollTop / 30 }), [])
   return (
     <div

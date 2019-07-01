@@ -1,7 +1,7 @@
 // Inpired by: https://codepen.io/popmotion/pen/xWrbNm?editors=0010
 
 import React from 'react'
-import { useSpring, animated, interpolate } from 'react-spring'
+import { useSpring, animated, to } from 'react-spring'
 import { useGesture } from 'react-with-gesture'
 import './styles.css'
 
@@ -17,7 +17,7 @@ export default function Slider({ children }) {
     size: down ? 1.1 : 1,
     immediate: name => down && name === 'x',
   })
-  const avSize = x.interpolate({
+  const avSize = x.to({
     map: Math.abs,
     range: [50, 300],
     output: ['scale(0.5)', 'scale(1)'],
@@ -39,7 +39,7 @@ export default function Slider({ children }) {
         <animated.div
           className="slider-fg"
           style={{
-            transform: interpolate(
+            transform: to(
               [x, size],
               (x, s) => `translate3d(${x}px,0,0) scale(${s})`
             ),

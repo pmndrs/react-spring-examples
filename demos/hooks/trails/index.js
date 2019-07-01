@@ -22,7 +22,7 @@ export default function Trail() {
             key={items[index]}
             style={{
               ...rest,
-              transform: x.interpolate(x => `translate3d(0,${x}px,0)`),
+              transform: x.to(x => `translate3d(0,${x}px,0)`),
             }}>
             <animated.div style={{ height }}>{items[index]}</animated.div>
           </animated.div>

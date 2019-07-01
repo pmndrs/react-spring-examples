@@ -29,7 +29,7 @@ export default function App() {
             key={key}
             className="list-reorder-card"
             style={{
-              transform: y.interpolate(y => `translate3d(${y}px,0,0)`),
+              transform: y.to(y => `translate3d(${y}px,0,0)`),
               ...rest,
             }}>
             <div className="list-reorder-cell">

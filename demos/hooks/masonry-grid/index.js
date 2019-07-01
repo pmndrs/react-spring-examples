@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useTransition, animated as a, config, interpolate } from 'react-spring'
+import { useTransition, animated as a, config, to } from 'react-spring'
 import shuffle from 'lodash/shuffle'
 import { useMeasure, useMedia } from './helpers'
 import data from './data'
@@ -59,7 +59,7 @@ export default function App() {
           <a.div
             key={key}
             style={{
-              transform: interpolate(
+              transform: to(
                 [xy, scale],
                 ([x, y], s) => `translate3d(${x}px,${y}px,0) scale(${s})`
               ),

@@ -22,7 +22,7 @@ export default function Card() {
       {knobs}
       <animated.div
         className="ccard"
-        style={{ transform: props.xys.interpolate(trans) }}
+        style={{ transform: props.xys.to(trans) }}
         onMouseLeave={() => set([0, 0, 1])}
         onMouseMove={e => {
           const rect = ref.current.getBoundingClientRect()

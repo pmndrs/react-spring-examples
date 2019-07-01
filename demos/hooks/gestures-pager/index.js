@@ -54,11 +54,11 @@ export default function Viewpager() {
           key={i}
           style={{
             display,
-            transform: x.interpolate(x => `translate3d(${x}px,0,0)`),
+            transform: x.to(x => `translate3d(${x}px,0,0)`),
           }}>
           <animated.div
             style={{
-              transform: sc.interpolate(s => `scale(${s})`),
+              transform: sc.to(s => `scale(${s})`),
               backgroundImage: `url(${pages[i]})`,
             }}
           />

@@ -19,7 +19,7 @@ function Pull() {
     <animated.div
       {...bind()}
       style={{
-        transform: xy.interpolate((x, y) => `translate3d(${x}px,${y}px,0)`),
+        transform: xy.to((x, y) => `translate3d(${x}px,${y}px,0)`),
       }}
     />
   )

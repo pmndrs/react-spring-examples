@@ -24,19 +24,19 @@ export default function Card() {
       }}>
       <animated.div
         className="card1"
-        style={{ transform: props.xy.interpolate(trans1) }}
+        style={{ transform: props.xy.to(trans1) }}
       />
       <animated.div
         className="card2"
-        style={{ transform: props.xy.interpolate(trans2) }}
+        style={{ transform: props.xy.to(trans2) }}
       />
       <animated.div
         className="card3"
-        style={{ transform: props.xy.interpolate(trans3) }}
+        style={{ transform: props.xy.to(trans3) }}
       />
       <animated.div
         className="card4"
-        style={{ transform: props.xy.interpolate(trans4) }}
+        style={{ transform: props.xy.to(trans4) }}
       />
     </div>
   )

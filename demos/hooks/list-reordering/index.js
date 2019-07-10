@@ -8,29 +8,29 @@ export default function App() {
   const [rows, set] = useState(data)
   useEffect(() => void setInterval(() => set(shuffle), 3000), [])
 
-  let width = 0
-  const transitions = useTransition(
-    rows.map(data => ({ ...data, y: (width += data.width) - data.width })),
-    d => d.name,
-    {
-      from: { width: 0, opacity: 0 },
-      leave: { width: 0, opacity: 0 },
-      enter: ({ y, width }) => ({ y, width, opacity: 1 }),
-      update: ({ y, width }) => ({ y, width }),
-      config: { mass: 5, tension: 500, friction: 150 },
-    }
-  )
+  let height = 0
+  rows.forEach(row => {
+    row.y = height
+    height += row.height
+  })
+
+  const transition = useTransition(rows, {
+    from: { height: 0, opacity: 0 },
+    leave: { height: 0, opacity: 0 },
+    enter: ({ y, height }) => ({ y, height, opacity: 1 }),
+    update: ({ y, height }) => ({ y, height }),
+    config: { mass: 5, tension: 500, friction: 150 },
+  })
 
   return (
     <div className="list-reorder-scroll">
-      <div className="list-reorder" style={{ width: width + 15 }}>
-        {transitions.map(({ item, props: { y, ...rest }, key }, index) => (
+      <div className="list-reorder" style={{ height: height + 15 }}>
+        {transition(({ y, ...style }, item) => (
           <animated.div
-            key={key}
             className="list-reorder-card"
             style={{
-              transform: y.to(y => `translate3d(${y}px,0,0)`),
-              ...rest,
+              transform: y.to(y => `translate3d(0,${y}px,0)`),
+              ...style,
             }}>
             <div className="list-reorder-cell">
               <div

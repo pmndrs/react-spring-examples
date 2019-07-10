@@ -1,7 +1,5 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CheckerPlugin } = require('awesome-typescript-loader')
-// const CheckerPlugin = require('fork-ts-checker-webpack-plugin')
 const webpack = require('webpack')
 const fs = require('fs')
 
@@ -62,7 +60,6 @@ module.exports = mode => {
         {
           test: /\.tsx?$/,
           use: {
-            // loader: 'ts-loader',
             loader: 'awesome-typescript-loader',
             options: {
               transpileOnly: true,
@@ -103,14 +100,16 @@ module.exports = mode => {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: buildAliases(),
     },
-    plugins: [
-      new CheckerPlugin(),
-      new HtmlWebpackPlugin({ template: 'template.html' }),
-    ],
+    plugins: [new HtmlWebpackPlugin({ template: 'template.html' })],
     devServer: {
       hot: false,
       contentBase: path.resolve('./'),
-      stats: 'errors-only',
+      stats: {
+        assets: false,
+        children: false,
+        chunks: false,
+        entrypoints: false,
+      },
     },
     devtool: 'inline-source-map',
     performance: { hints: false },

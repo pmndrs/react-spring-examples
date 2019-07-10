@@ -3,13 +3,6 @@
     "jsx": "react",
     "lib": ["es2017", "dom"],
     "target": "es2017",
-    "baseUrl": ".",
-    "paths": {
-      "react-spring": [
-        "../targets/web/src/index.ts",
-        "./node_modules/@react-spring/web/index.js"
-      ]
-    },
     "noEmitOnError": true,
     "preserveSymlinks": true,
     "allowSyntheticDefaultImports": true,

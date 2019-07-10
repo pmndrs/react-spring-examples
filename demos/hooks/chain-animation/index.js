@@ -24,14 +24,12 @@ export default function App() {
 
   // 2. create transition-refs
   const transRef = useRef()
-  const transitions = useTransition(open ? data : [], item => item.name, {
+  const transition = useTransition(open ? data : [], {
     from: { opacity: 0, transform: 'scale(0)' },
     enter: { opacity: 1, transform: 'scale(1)' },
     leave: { opacity: 0, transform: 'scale(0)' },
     trail: 400 / data.length,
     config: { ...config.stiff, precision: 0.01 },
-    unique: true,
-    //reset: true,
     ref: transRef,
   })
 
@@ -43,8 +41,8 @@ export default function App() {
       <Sidebar
         style={{ width: size, height: size, background }}
         onClick={() => set(open => !open)}>
-        {transitions.map(({ item, key, props }) => (
-          <Item key={key} style={{ ...props, background: item.css }} />
+        {transition((values, item) => (
+          <Item style={{ ...values, background: item.css }} />
         ))}
       </Sidebar>
     </Main>

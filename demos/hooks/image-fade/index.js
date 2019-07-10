@@ -28,7 +28,7 @@ const slides = [
 export default function App() {
   const [index, set] = useState(0)
 
-  const transitions = useTransition(slides[index], item => item.id, {
+  const transition = useTransition(slides[index], {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
@@ -40,9 +40,8 @@ export default function App() {
     return () => clearInterval(id)
   }, [])
 
-  return transitions.map(({ item, props, key }) => (
+  return transition((props, item) => (
     <animated.div
-      key={key}
       className="fade-bg"
       style={{ ...props, backgroundImage: `url(${item.url})` }}
     />

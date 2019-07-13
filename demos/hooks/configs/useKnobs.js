@@ -18,9 +18,32 @@ function Knob({ name, value, onChange, min = 1, max = 500 }) {
 }
 
 export default function useKnobs(initialValues, options) {
-  const [values, setValues] = useState(initialValues)
+  const [values, setValues] = useState(
+    () => new Map(Object.entries(initialValues))
+  )
+
+  const valuesObject = {}
+  const knobs = []
+  values.forEach((value, key) => {
+    valuesObject[key] = value
+
+    knobs.push(
+      <Knob
+        {...options}
+        key={key}
+        name={key}
+        value={value}
+        onChange={newValue => {
+          const newValues = new Map(values)
+          newValues.set(key, newValue)
+          setValues(newValues)
+        }}
+      />
+    )
+  })
+
   return [
-    values,
+    valuesObject,
     <div
       style={{
         top: 20,
@@ -30,20 +53,7 @@ export default function useKnobs(initialValues, options) {
         position: 'absolute',
         padding: 20,
       }}>
-      {Object.keys(values).map(name => (
-        <Knob
-          {...options}
-          key={name}
-          name={name}
-          value={values[name]}
-          onChange={newValue =>
-            setValues({
-              ...values,
-              [name]: newValue,
-            })
-          }
-        />
-      ))}
+      {knobs}
     </div>,
   ]
 }

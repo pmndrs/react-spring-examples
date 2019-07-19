@@ -9,15 +9,19 @@ export default function Card() {
   // const forceUpdate = useForceUpdate()
   // useEffect(() => void setInterval(forceUpdate, 100), [])
 
-  const { transform, opacity } = useSpring({
-    config: { mass: 6, tension: 500, friction: 80 },
-    opacity: flipped ? 1 : 0,
-    transform: `perspective(1400px) rotateX(${flipped ? 180 : 0}deg)`,
-    from: {
+  const [{ transform, opacity }] = useSpring(
+    {
+      config: { mass: 6, tension: 500, friction: 80 },
       opacity: flipped ? 1 : 0,
-      transform: `perspective(1400px) rotateX(0deg)`,
+      transform: `perspective(1400px) rotateX(${flipped ? 180 : 0}deg)`,
+      from: {
+        opacity: flipped ? 0 : 1,
+        transform: `perspective(1400px) rotateX(0deg)`,
+      },
     },
-  })
+    [flipped]
+  )
+  
   return (
     <div className="flip-main" onClick={() => set(state => !state)}>
       <a.div

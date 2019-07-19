@@ -14,14 +14,17 @@ function Tree({ children, name, style, open = false }) {
   const [isOpen, setOpen] = useState(open)
   const previous = usePrevious(isOpen)
   const [bind, { height: viewHeight }] = useMeasure()
-  const { height, opacity, transform } = useSpring({
-    from: { height: 0, opacity: 0, transform: 'translate3d(20px,0,0)' },
-    to: {
-      height: isOpen ? viewHeight : 0,
-      opacity: isOpen ? 1 : 0,
-      transform: `translate3d(${isOpen ? 0 : 20}px,0,0)`,
+  const [{ height, opacity, transform }] = useSpring(
+    {
+      from: { height: 0, opacity: 0, transform: 'translate3d(20px,0,0)' },
+      to: {
+        height: isOpen ? viewHeight : 0,
+        opacity: isOpen ? 1 : 0,
+        transform: `translate3d(${isOpen ? 0 : 20}px,0,0)`,
+      },
     },
-  })
+    [isOpen]
+  )
   const Icon =
     Icons[`${children ? (isOpen ? 'Minus' : 'Plus') : 'Close'}SquareO`]
   return (

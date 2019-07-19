@@ -8,14 +8,13 @@ const interp = i => r =>
   `translate3d(0, ${15 * Math.sin(r + (i * 2 * Math.PI) / 1.6)}px, 0)`
 
 export default function App() {
-  const props = useSpring({
+  const [props] = useSpring({
     to: async next => {
-      while (1) await next({ radians: 2 * Math.PI })
+      while (1) await next({ radians: 2 * Math.PI, reset: true })
     },
     from: { radians: 0 },
-    reset: true,
     config: { duration: 3500 },
-  })
+  }, [])
   return (
     <div className="script-bf-main">
       {items.map(i => (

@@ -6,7 +6,7 @@ import './styles.css'
 export default function App() {
   const [open, toggle] = useState(false)
   const [bind, { width }] = useMeasure()
-  const props = useSpring({ width: open ? width : 0, onFrame: v => console.log(v) })
+  const [props] = useSpring({ width: open ? width : 0, onFrame: v => console.log(v) }, [open])
   return (
     <div className="auto-container" {...bind} onClick={() => toggle(!open)}>
       <animated.div className="auto-fill" style={props} />

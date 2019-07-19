@@ -15,7 +15,7 @@ import './styles.css'
 
 export default function Demo() {
   const [state, toggle] = useState(true)
-  const { x } = useSpring({
+  const [{ x }] = useSpring({
     from: { x: 0 },
     x: state ? 1 : 0,
     config: { duration: 1000 },

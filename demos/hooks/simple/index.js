@@ -1,16 +1,12 @@
 import React from 'react'
-import { useSpring, animated } from 'react-spring'
-import { useGesture } from 'react-use-gesture'
+import { useSpring, animated, interpolate } from 'react-spring'
+import { useDrag } from 'react-use-gesture'
 import './styles.css'
 
 export default function Simple() {
-  const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
-  const bind = useGesture({
-    onDrag: ({ down, delta }) => {
-      set({ xy: down ? delta : [0, 0] })
-    },
-    onMouseDown: () => console.log('mouse down'),
-    onMouseMove: () => console.log('mouse moving'),
+  const [{ xy, scale }, set] = useSpring(() => ({ xy: [0, 0], scale: 1 }))
+  const bind = useDrag(({ down, delta }) => {
+    set({ xy: down ? delta : [0, 0], scale: down ? 1.2 : 1 })
   })
   // Now we're just mapping the animated values to our view, that's it. Btw, this component only renders once. :-)
   return (
@@ -18,7 +14,10 @@ export default function Simple() {
       <animated.div
         {...bind()}
         style={{
-          transform: xy.interpolate((x, y) => `translate3D(${x}px, ${y}px, 0)`),
+          transform: interpolate(
+            [xy, scale],
+            ([x, y], s) => `translate3D(${x}px, ${y}px, 0) scale(${s})`
+          ),
         }}
       />
     </div>

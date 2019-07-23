@@ -20,6 +20,11 @@ export default [
     tags: ['useSprings'],
   },
   {
+    name: 'hooks/swipe',
+    title: 'Swipe',
+    tags: ['useSprings'],
+  },
+  {
     name: 'hooks/multi-gesture-card',
     title: 'Multi-gesture card',
     tags: ['useSprings'],

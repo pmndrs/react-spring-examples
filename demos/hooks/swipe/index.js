@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import clamp from 'lodash-es/clamp'
 import { useSpring, animated, interpolate } from 'react-spring'
 import { useGesture } from 'react-use-gesture'
 import './styles.css'

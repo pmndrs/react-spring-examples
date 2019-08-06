@@ -1,7 +1,7 @@
 // Original: https://github.com/chenglou/react-motion/tree/master/demos/demo8-draggable-list
 
 import React, { useRef } from 'react'
-import clamp from 'lodash-es/clamp'
+import { clamp } from 'lodash'
 import swap from 'lodash-move'
 import { useDrag } from 'react-use-gesture'
 import { useSprings, animated, interpolate } from 'react-spring'

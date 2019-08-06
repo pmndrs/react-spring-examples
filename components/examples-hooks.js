@@ -5,6 +5,11 @@ export default [
     tags: ['useSprings'],
   },
   {
+    name: 'hooks/wheel',
+    title: 'Wheel',
+    tags: ['useSprings'],
+  },
+  {
     name: 'hooks/lock',
     title: 'Lock',
     tags: ['useSprings'],

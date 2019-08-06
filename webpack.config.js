@@ -61,6 +61,7 @@ module.exports = mode => {
     plugins: [new HtmlWebpackPlugin({ template: 'template.html' })],
     devServer: {
       hot: false,
+      host: '0.0.0.0',
       contentBase: path.resolve('./'),
       stats: 'errors-only',
     },

@@ -75,6 +75,11 @@ return <animated.div style={{ transform }} children="Slide">`,
     tags: ['useSprings'],
   },
   {
+    name: 'hooks/inertia',
+    title: 'Inertia',
+    tags: ['useSprings'],
+  },
+  {
     name: 'hooks/clamp-bounce',
     title: 'Clamp bounce',
     tags: ['useSprings'],

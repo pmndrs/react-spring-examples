@@ -1,0 +1,14 @@
+.inertia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ecede7;
+  height: 100%;
+}
+
+.inertia > div {
+  width: 80px;
+  height: 80px;
+  background: hotpink;
+  border-radius: 16px;
+}

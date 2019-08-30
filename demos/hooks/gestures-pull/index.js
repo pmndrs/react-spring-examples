@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react'
 import clamp from 'lodash-es/clamp'
-import { useGesture } from 'react-with-gesture'
+import { useDrag } from 'react-use-gesture'
 import { useSpring, animated } from 'react-spring'
 import { add, scale } from 'vec-la'
 import './styles.css'
 
 function Pull() {
   const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
-  const bind = useGesture(({ down, delta, velocity }) => {
+  const bind = useDrag(({ down, movement: [mx, my], velocity }) => {
     velocity = Math.max(1, velocity)
     console.log(delta, velocity)
     set({

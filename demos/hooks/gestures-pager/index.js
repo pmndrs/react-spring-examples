@@ -49,13 +49,7 @@ export default function Viewpager() {
       ref={r => r && (width.current = r.getBoundingClientRect().width)}
       className="viewpager-main">
       {props.map(({ x, display, sc }, i) => (
-        <animated.div
-          {...bind()}
-          key={i}
-          style={{
-            display,
-            transform: x.to(x => `translate3d(${x}px,0,0)`),
-          }}>
+        <animated.div {...bind()} key={i} style={{ display, x }}>
           <animated.div
             style={{
               transform: sc.to(s => `scale(${s})`),

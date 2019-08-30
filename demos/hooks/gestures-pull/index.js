@@ -6,23 +6,16 @@ import { add, scale } from 'vec-la'
 import './styles.css'
 
 function Pull() {
-  const [{ xy }, set] = useSpring(() => ({ xy: [0, 0] }))
+  const [{ x, y }, set] = useSpring(() => ({ x: 0, y: 0 }))
   const bind = useDrag(({ down, movement: [mx, my], velocity }) => {
     velocity = Math.max(1, velocity)
-    console.log(delta, velocity)
     set({
-      xy: down ? delta : [0, 0],
+      x: down ? mx : 0,
+      y: down ? my : 0,
       config: { mass: velocity, tension: 500 * velocity, friction: 50 },
     })
   })
-  return (
-    <animated.div
-      {...bind()}
-      style={{
-        transform: xy.to((x, y) => `translate3d(${x}px,${y}px,0)`),
-      }}
-    />
-  )
+  return <animated.div {...bind()} style={{ x, y }} />
 }
 
 export default function App() {

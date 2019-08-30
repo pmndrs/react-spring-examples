@@ -60,10 +60,8 @@ export default function DraggableList({
               boxShadow: shadow.to(
                 s => `rgba(0, 0, 0, 0.2) 0px ${s}px ${2 * s}px 0px`
               ),
-              transform: to(
-                [y, scale],
-                (y, s) => `translate3d(0,${y}px,0) scale(${s})`
-              ),
+              y,
+              scale,
             }}
             children={items[i]}
             {...bind(i)}

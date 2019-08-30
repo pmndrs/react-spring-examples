@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSprings, animated, to } from 'react-spring'
-import { useGesture } from 'react-with-gesture'
+import { useDrag } from 'react-use-gesture'
 import './styles.css'
 
 const cards = [
@@ -36,12 +36,11 @@ export default function Deck() {
   }))
 
   // Create a gesture, we're interested in down-state, delta (current-pos - click-pos), direction and velocity
-  const bind = useGesture(
+  const bind = useDrag(
     ({
       args: [index],
       down,
-      delta: [xDelta],
-      distance,
+      movement: [xMove],
       direction: [xDir],
       velocity,
     }) => {
@@ -57,9 +56,9 @@ export default function Deck() {
         if (index !== i) return
         const isGone = gone.has(index)
         // When a card is gone it flys out left or right, otherwise it's either dragged to delta, or goes back to zero
-        const x = isGone ? (200 + window.innerWidth) * dir : down ? xDelta : 0
+        const x = isGone ? (200 + window.innerWidth) * dir : down ? xMove : 0
         // How much the card tilts, flicking it harder makes it rotate faster
-        const rot = xDelta / 100 + (isGone ? dir * 10 * velocity : 0)
+        const rot = xMove / 100 + (isGone ? dir * 10 * velocity : 0)
         // Active cards lift up a bit
         const scale = down ? 1.1 : 1
         return {

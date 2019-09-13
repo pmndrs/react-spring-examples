@@ -25,13 +25,8 @@ export default function App() {
   return (
     <div className="list-reorder-scroll">
       <div className="list-reorder" style={{ height: height + 15 }}>
-        {transition(({ y, ...style }, item) => (
-          <animated.div
-            className="list-reorder-card"
-            style={{
-              transform: y.to(y => `translate3d(0,${y}px,0)`),
-              ...style,
-            }}>
+        {transition((style, item) => (
+          <animated.div className="list-reorder-card" style={style}>
             <div className="list-reorder-cell">
               <div
                 className="list-reorder-details"

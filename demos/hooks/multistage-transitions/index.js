@@ -6,21 +6,21 @@ export default function MultiStageTransition() {
   const ref = useRef([])
   const [items, set] = useState([])
 
-  const transitions = useTransition(items, null, {
+  const transition = useTransition(items, {
     from: {
       opacity: 0,
       height: 0,
       innerHeight: 0,
-      transform: 'perspective(600px) rotateX(0deg)',
+      rotateX: 0,
       color: '#8fa5b6',
     },
     enter: [
       { opacity: 1, height: 50, innerHeight: 50 },
-      { transform: 'perspective(600px) rotateX(180deg)', color: '#28d79f' },
-      { transform: 'perspective(600px) rotateX(0deg)' },
+      { rotateX: 180, color: '#28d79f' },
+      { rotateX: 0 },
     ],
     leave: [
-      { color: '#c23369' },
+      { color: '#c23369', rotateX: 0 },
       { innerHeight: 0 },
       { opacity: 0, height: 0 },
     ],
@@ -45,11 +45,10 @@ export default function MultiStageTransition() {
   return (
     <div className="transitions-main">
       <div>
-        {transitions.map(({ item, props: { innerHeight, ...rest }, key }) => (
+        {transition(({ innerHeight, ...style }, item) => (
           <animated.div
             className="transitions-item"
-            key={key}
-            style={rest}
+            style={{ ...style, transform: 'perspective(600px)' }}
             onClick={reset}>
             <animated.div style={{ overflow: 'hidden', height: innerHeight }}>
               {item}

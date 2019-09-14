@@ -75,6 +75,16 @@ return <animated.div style={{ transform }} children="Slide">`,
     tags: ['useSprings'],
   },
   {
+    name: 'hooks/inertia',
+    title: 'Inertia',
+    tags: ['useSprings'],
+  },
+  {
+    name: 'hooks/clamp-bounce',
+    title: 'Clamp bounce',
+    tags: ['useSprings'],
+  },
+  {
     name: 'hooks/mouse-parallax',
     title: 'Mouse parallax',
     link: 'https://codesandbox.io/embed/r5x34869vq',

@@ -17,7 +17,8 @@ function MessageHub({
   const [cancelMap] = useState(() => new WeakMap())
   const [items, setItems] = useState([])
 
-  const transitions = useTransition(items, item => item.key, {
+  const transition = useTransition(items, {
+    key: item => item.key,
     from: { opacity: 0, height: 0, life: '100%' },
     enter: item => async (next, stop) => {
       if (DEBUG) console.log(`  Entering:`, item.key)
@@ -49,8 +50,8 @@ function MessageHub({
 
   return (
     <Container>
-      {transitions.map(({ key, item, props: { life, ...style } }) => (
-        <Message key={key} style={style}>
+      {transition(({ life, ...style }, item) => (
+        <Message style={style}>
           <Content ref={ref => ref && refMap.set(item, ref)}>
             <Life style={{ right: life }} />
             <p>{item.msg}</p>

@@ -26,7 +26,7 @@ export default function App() {
     () => set(state => (state === 2 ? 0 : state + 1)),
     []
   )
-  const transitions = useTransition(index, null, {
+  const transition = useTransition(index, {
     from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
     initial: { opacity: 1, transform: 'translate3d(0%,0,0)' },
     enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
@@ -37,9 +37,9 @@ export default function App() {
 
   return (
     <div className="simple-trans-main" onClick={onClick}>
-      {transitions.map(({ item, props, key }) => {
+      {transition((props, item) => {
         const Page = pages[item]
-        return <Page key={key} style={props} />
+        return <Page style={props} />
       })}
     </div>
   )

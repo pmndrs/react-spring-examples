@@ -30,7 +30,8 @@ export default function App() {
     : []
 
   const trail = FAST_MODE ? 25 : 80
-  const transitions = useTransition(gridItems, item => item.css, {
+  const transition = useTransition(gridItems, {
+    key: item => item.css,
     from: ({ xy, width, height }) => ({
       xy,
       width,
@@ -55,9 +56,8 @@ export default function App() {
         set(items.length ? [] : data)
       }}>
       <div {...bind} className="mgrid-list">
-        {transitions.map(({ item, props: { xy, scale, ...rest }, key }) => (
+        {transition(({ xy, scale, ...rest }, item) => (
           <a.div
-            key={key}
             style={{
               transform: to(
                 [xy, scale],

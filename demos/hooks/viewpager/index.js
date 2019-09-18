@@ -16,11 +16,11 @@ export default function Viewpager() {
   const index = useRef(0)
   const [props, set] = useSprings(pages.length, i => ({
     x: i * window.innerWidth,
-    sc: 1,
+    scale: 1,
     display: 'block',
   }))
   const bind = useDrag(
-    ({ down, delta: [xDelta], direction: [xDir], distance, cancel }) => {
+    ({ down, movement: [mx], direction: [xDir], distance, cancel }) => {
       if (down && distance > window.innerWidth / 2)
         cancel(
           (index.current = clamp(
@@ -32,27 +32,18 @@ export default function Viewpager() {
       set(i => {
         if (i < index.current - 1 || i > index.current + 1)
           return { display: 'none' }
-        const x = (i - index.current) * window.innerWidth + (down ? xDelta : 0)
-        const sc = down ? 1 - distance / window.innerWidth / 2 : 1
-        return { x, sc, display: 'block' }
+        const x = (i - index.current) * window.innerWidth + (down ? mx : 0)
+        const scale = down ? 1 - distance / window.innerWidth / 2 : 1
+        return { x, scale, display: 'block' }
       })
     }
   )
   return (
     <div className="flex-content viewpager">
-      {props.map(({ x, display, sc }, i) => (
-        <animated.div
-          {...bind()}
-          key={i}
-          style={{
-            display,
-            transform: x.interpolate(x => `translate3d(${x}px,0,0)`),
-          }}>
+      {props.map(({ x, display, scale }, i) => (
+        <animated.div {...bind()} key={i} style={{ display, x }}>
           <animated.div
-            style={{
-              transform: sc.interpolate(s => `scale(${s})`),
-              backgroundImage: `url(${pages[i]})`,
-            }}
+            style={{ scale, backgroundImage: `url(${pages[i]})` }}
           />
         </animated.div>
       ))}

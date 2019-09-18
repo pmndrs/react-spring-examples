@@ -4,7 +4,7 @@ import React, { useRef } from 'react'
 import { clamp } from 'lodash'
 import swap from 'lodash-move'
 import { useDrag } from 'react-use-gesture'
-import { useSprings, animated, interpolate } from 'react-spring'
+import { useSprings, animated } from 'react-spring'
 import './styles.css'
 
 // Returns fitting styles for dragged/idle items
@@ -30,7 +30,7 @@ export default function DraggableList({
 }) {
   const order = useRef(items.map((_, index) => index)) // Store indicies as a local ref, this represents the item order
   const [springs, setSprings] = useSprings(items.length, fn(order.current)) // Create springs, each corresponds to an item, controlling its transform, scale, etc.
-  const bind = useDrag(({ args: [originalIndex], down, delta: [, y] }) => {
+  const bind = useDrag(({ args: [originalIndex], down, movement: [, y] }) => {
     const curIndex = order.current.indexOf(originalIndex)
     const curRow = clamp(
       Math.round((curIndex * 100 + y) / 100),
@@ -51,13 +51,11 @@ export default function DraggableList({
           key={i}
           style={{
             zIndex,
-            boxShadow: shadow.interpolate(
+            boxShadow: shadow.to(
               s => `rgba(0, 0, 0, 0.15) 0px ${s}px ${2 * s}px 0px`
             ),
-            transform: interpolate(
-              [y, scale],
-              (y, s) => `translate3d(0,${y}px,0) scale(${s})`
-            ),
+            y,
+            scale,
           }}
           children={items[i]}
         />

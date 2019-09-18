@@ -8,9 +8,13 @@ const trans = (x, y) => `translate3d(${x}px,${y}px,0) translate3d(-50%,-50%,0)`
 
 export default function Goo() {
   const ref = useRef(null)
-  const [trail, set] = useTrail(3, () => ({
+  const [trail, set] = useTrail(3, i => ({
     xy: [0, 0],
-    config: i => (i === 0 ? fast : slow),
+    // Make "x" fast and "y" slow
+    config: i => (i == 0 ? fast : slow),
+    immediate: i == 0,
+    onStart: () => console.log('onStart:', i),
+    onRest: () => console.log('onRest:', i),
   }))
 
   return (

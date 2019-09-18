@@ -11,15 +11,22 @@ export default function App() {
   // this way we can inject the springs current coordinates on the initial event and
   // add delta to it for convenience
   const bind = useGesture(
-    ({ down, delta, velocity, direction, temp = xy.getValue() }) => {
-      console.log('gesture.isDown ==', down)
+    ({ down, delta, velocity, direction, memo = xy.get() }) => {
+      console.log(
+        '(down: %O, delta: %O, velocity: %O, direction: %O, memo: %O)',
+        down,
+        delta,
+        velocity,
+        direction,
+        memo
+      )
       set({
-        xy: add(delta, temp),
+        xy: add(delta, memo),
         immediate: down,
         config: { velocity: scale(direction, velocity), decay: true },
         reset: !down,
       })
-      return temp
+      return memo
     }
   )
   return (

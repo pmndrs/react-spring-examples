@@ -6,7 +6,12 @@ import './styles.css'
 
 export default function App() {
   const [index, set] = useState(0)
-  const conf =
+  useEffect(() => {
+    setInterval(() => set(state => (state + 1) % 4), 2000)
+  }, [])
+
+  const transition = useTransition(
+    slides[index],
     index % 2
       ? {
           leave: { transform: `translateX(100%)` },
@@ -19,20 +24,14 @@ export default function App() {
           from: { transform: `rotateX(40deg) translateY(-20%)` },
           config: config.molasses,
         }
-  const transitions = useTransition(slides[index], item => item.id, conf)
-  useEffect(
-    () => void setInterval(() => set(state => (state + 1) % 4), 2000),
-    []
   )
-  return transitions.map(({ item, props, key }) => (
+
+  return transition((style, item) => (
     <animated.div
-      key={key}
       className="bg"
       style={{
-        ...props,
-        backgroundImage: `url(https://images.unsplash.com/${
-          item.url
-        }&auto=format&fit=crop)`,
+        ...style,
+        backgroundImage: `url(https://images.unsplash.com/${item.url}&auto=format&fit=crop)`,
       }}
     />
   ))

@@ -17,9 +17,8 @@ export default function App() {
       from={{ opacity: 0 }}
       enter={{ opacity: 1 }}
       leave={{ opacity: 0 }}>
-      {show =>
-        show &&
-        (props => <animated.div style={props}>Hello world</animated.div>)
+      {(style, show) =>
+        show && <animated.div style={style}>Hello world</animated.div>
       }
     </Transition>
   )

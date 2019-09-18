@@ -15,7 +15,6 @@ export default function App() {
       }
     },
     from: { radians: 0 },
-    reset: true,
     config: { duration: 3500 },
   })
   return (

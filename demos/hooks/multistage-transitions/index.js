@@ -15,7 +15,7 @@ export default function MultiStageTransition() {
       color: '#8fa5b6',
     },
     enter: [
-      { opacity: 1, height: 50, innerHeight: 50 },
+      { opacity: 1, height: 50, innerHeight: 50, reset: true },
       { rotateX: 180, color: '#28d79f' },
       { rotateX: 0 },
     ],

@@ -18,7 +18,7 @@ export default function App() {
 
   return (
     <>
-      <button onClick={() => move(props[0].x.getValue() + 100)}>Move</button>
+      <button onClick={() => move(props[0].x.get() + 100)}>Move</button>
       <div className="container">
         {props.map(({ x }, i) => (
           <a.div

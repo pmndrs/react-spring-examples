@@ -3,51 +3,59 @@ import { useSpring, animated } from 'react-spring'
 import { useDrag } from 'react-use-gesture'
 import './styles.css'
 
+const modes = {
+  pong: 0, // The min/max values deflect the decay animation
+  bounce: 0, // The animation bounces instead of overshooting. Try both directions
+  skipFinish: 0, // This demonstrates "from !== to" when truthy, else "from === to" (it should work either way)
+}
+
 const [min, max] = [-250, 250]
+const clamp = value => Math.max(min, Math.min(max, value))
 
 export default function Inertia() {
-  const [{ y }, set] = useSpring(() => ({ y: 0 }))
+  const { y } = useSpring({ y: 0 })
 
   const bind = useDrag(
-    ({ down, movement: [, dy], vxvy: [, vy], memo = y.getValue() }) => {
-      if (down) set({ y: dy + memo, onFrame: () => {}, immediate: true })
+    ({ down, movement: [, dy], vxvy: [, vy], memo = y.get() }) => {
+      if (down) y.set(clamp(dy + memo))
       else inertia(dy + memo + 1, vy)
       return memo
     }
   )
 
-  const springBounce = React.useCallback(
-    velocity => {
-      set({
-        y: velocity > 0 ? max : min,
-        onFrame: () => {}, // <-- this is annoying :)
-        config: { velocity: velocity * 3 },
-      })
-    },
-    [set]
-  )
+  const springBounce = velocity =>
+    y.animate({
+      to: velocity > 0 ? max : min,
+      config: {
+        velocity: velocity,
+        tension: 30,
+        friction: 2,
+        clamp: modes.bounce ? 0.7 : false,
+        precision: 0.005,
+      },
+      onRest: () => console.log('BOUNCE END'),
+    })
 
-  const inertia = React.useCallback(
-    (position, velocity) => {
-      set({
-        to: async (next, stop) => {
-          await next({
-            y: position,
-            onFrame: async v => {
-              const vel = y.lastVelocity
+  const inertia = (position, velocity) =>
+    y.animate({
+      y: position,
+      onChange: async val => {
+        const vel = y.node.lastVelocity
+        if ((val > max && vel > 0) || (val < min && vel < 0)) {
+          if (modes.pong) {
+            inertia(y.get(), -vel)
+          } else {
+            if (!modes.skipFinish) {
+              y.finish(vel > 0 ? max : min)
+            }
+            springBounce(vel)
+          }
+        }
+      },
+      config: { decay: true, velocity },
+      onRest: () => console.log('INERTIA END'),
+    })
 
-              if ((v.y > max && vel > 0) || (v.y < min && vel < 0)) {
-                stop()
-                springBounce(vel)
-              }
-            },
-            config: { decay: true, velocity },
-          })
-        },
-      })
-    },
-    [y, set, springBounce]
-  )
   // Now we're just mapping the animated values to our view, that's it. Btw, this component only renders once. :-)
   return (
     <div className="inertia">

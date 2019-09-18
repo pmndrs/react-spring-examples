@@ -12,24 +12,22 @@ import { useTransition, animated as a } from 'react-spring'
 export default function App() {
   const [reset, setReset] = useState(false)
   const [item, setItem] = useState(0)
-  const t = useTransition(item, null, {
-    keys: i => i,
+  const t = useTransition(item, {
     initial: null,
     reset,
     from: { transform: 'translate(-100%)' },
     enter: { transform: 'translate(0%)' },
     leave: { transform: 'translate(100%)' },
   })
-  const items = t.map(({ item, key, props }) => (
+  const items = t((style, item) => (
     <a.div
-      key={key}
       style={{
         display: 'flex',
         position: 'absolute',
         width: '100%',
         top: 50,
         justifyContent: 'center',
-        ...props,
+        ...style,
       }}
       onClick={() => {
         setItem(i => i + 1)

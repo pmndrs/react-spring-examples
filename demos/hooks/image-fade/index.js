@@ -30,8 +30,15 @@ export default function App() {
 
   const transition = useTransition(slides[index], {
     from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0 },
+    enter: [
+      { zIndex: 1, immediate: true, onChange: console.log },
+      { opacity: 1, onStart: () => console.log('onEnter(%O)', index) },
+    ],
+    leave: [
+      { zIndex: 0, immediate: true, onChange: console.log },
+      { opacity: 0, onStart: () => console.log('onLeave(%O)', index) },
+    ],
+    expires: Infinity,
     config: config.molasses,
   })
 
@@ -40,10 +47,10 @@ export default function App() {
     return () => clearInterval(id)
   }, [])
 
-  return transition((props, item) => (
+  return transition((props, { url }) => (
     <animated.div
       className="fade-bg"
-      style={{ ...props, backgroundImage: `url(${item.url})` }}
+      style={{ ...props, backgroundImage: `url(${url})` }}
     />
   ))
 }

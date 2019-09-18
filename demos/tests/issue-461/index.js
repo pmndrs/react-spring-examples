@@ -9,7 +9,7 @@ export default function Container() {
 
   const addItems = useCallback(() => setItems(range(10)))
 
-  const transitions = useTransition(items, null, {
+  const transition = useTransition(items, {
     from: { transform: 'translate3d(0,40px,0)', opacity: 0 },
     enter: { transform: 'translate3d(0,0px,0)', opacity: 1 },
     leave: { transform: 'translate3d(0,40px,0)', opacity: 0 },
@@ -24,10 +24,8 @@ export default function Container() {
         Add
       </button>
       <div style={{ display: 'flex' }}>
-        {transitions.map(({ item, key, props }) => (
-          <animated.div key={key} style={props}>
-            {item}
-          </animated.div>
+        {transition((style, item) => (
+          <animated.div style={style}>{item}</animated.div>
         ))}
       </div>
     </div>

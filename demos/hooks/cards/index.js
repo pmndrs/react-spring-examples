@@ -67,14 +67,7 @@ export default function Deck() {
   return (
     <div className="cards flex-content">
       {props.map(({ x, y, rot, scale }, i) => (
-        <animated.div
-          key={i}
-          style={{
-            transform: interpolate(
-              [x, y],
-              (x, y) => `translate3d(${x}px,${y}px,0)`
-            ),
-          }}>
+        <animated.div key={i} style={{ x, y }}>
           {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
           <animated.div
             {...bind(i)}

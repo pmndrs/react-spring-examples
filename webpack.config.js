@@ -4,7 +4,9 @@ const webpack = require('webpack')
 const fs = require('fs')
 
 const createAlias = (name, fallback) =>
-  fs.existsSync(`./../${name}`) ? path.resolve(`./../${name}`) : fallback || name
+  fs.existsSync(`./../${name}`)
+    ? path.resolve(`./../${name}`)
+    : fallback || name
 
 module.exports = mode => {
   return {
@@ -48,20 +50,18 @@ module.exports = mode => {
       modules: [path.resolve('./'), 'node_modules'],
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       alias: {
-        'react-spring$': createAlias('react-spring/src/targets/web', 'react-spring'),
-        'react-spring/renderprops': createAlias('react-spring/src/renderprops/targets/web', 'react-spring/renderprops'),
-        'react-spring/renderprops-addons': createAlias(
-          'react-spring/src/renderprops/addons',
-          'react-spring/renderprops-addons',
+        'react-use-gesture$': createAlias(
+          'react-use-gesture/src',
+          'react-use-gesture'
         ),
         react: path.resolve('node_modules/react'),
         'react-dom': path.resolve('node_modules/react-dom'),
-        'prop-types': path.resolve('node_modules/prop-types'),
       },
     },
     plugins: [new HtmlWebpackPlugin({ template: 'template.html' })],
     devServer: {
       hot: false,
+      host: '0.0.0.0',
       contentBase: path.resolve('./'),
       stats: 'errors-only',
     },

@@ -33,13 +33,25 @@ export default class Demo extends React.Component {
     })
   }
 
-  setVisible = ({ isIntersecting }) => this.setState({ visible: isIntersecting })
+  setVisible = ({ isIntersecting }) =>
+    this.setState({ visible: isIntersecting })
 
-  enter = tag => this.props.code && this.props.code[tag] && this.setState({ code: this.props.code[tag] })
+  enter = tag =>
+    this.props.code &&
+    this.props.code[tag] &&
+    this.setState({ code: this.props.code[tag] })
   leave = tag => this.setState({ code: undefined })
 
   render() {
-    const { title, description, tags, link, code, overlayCode = true, fullscreen = false } = this.props
+    const {
+      title,
+      description,
+      tags,
+      link,
+      code,
+      overlayCode = true,
+      fullscreen = false,
+    } = this.props
     return (
       <Container fullscreen={fullscreen}>
         <Header>
@@ -72,18 +84,7 @@ export default class Demo extends React.Component {
         <Content>
           <ErrorBoundary>
             <Observer onChange={this.setVisible}>
-              <div>
-                {this.state.visible && <this.component />}
-
-                {/*overlayCode && (
-              <Spring
-                native
-                from={{ opacity: 0 }}
-                to={{ opacity: this.state.code ? 1 : 0 }}>
-                {props => <Code style={props} children={this.state.code} />}
-              </Spring>
-            )*/}
-              </div>
+              <div>{this.state.visible && <this.component />}</div>
             </Observer>
           </ErrorBoundary>
         </Content>
@@ -102,8 +103,9 @@ const Container = styled('div')`
 
 const Header = styled('div')`
   margin-bottom: 10px;
-  font-family: 'Chinese Quote', -apple-system, system-ui, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
-    'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+  font-family: 'Chinese Quote', -apple-system, system-ui, 'Segoe UI',
+    'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue',
+    Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
 
   & > h1 {

@@ -24,7 +24,7 @@ export default function Inertia() {
   )
 
   const springBounce = velocity =>
-    y.animate({
+    y.start({
       to: velocity > 0 ? max : min,
       config: {
         velocity: velocity,
@@ -37,7 +37,7 @@ export default function Inertia() {
     })
 
   const inertia = (position, velocity) =>
-    y.animate({
+    y.start({
       y: position,
       onChange: async val => {
         const vel = y.node.lastVelocity

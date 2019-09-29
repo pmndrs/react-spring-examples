@@ -1,18 +1,12 @@
-import React, { useState, useCallback, useEffect } from 'react'
-import { useSprings, useTransition, animated } from 'react-spring'
+import React, { useState, useEffect } from 'react'
+import { useSprings, useTransition, a } from 'react-spring'
 import './styles.css'
 
 const pages = [
+  ({ style }) => <a.div style={{ ...style, background: 'lightpink' }}>A</a.div>,
+  ({ style }) => <a.div style={{ ...style, background: 'lightblue' }}>B</a.div>,
   ({ style }) => (
-    <animated.div style={{ ...style, background: 'lightpink' }}>A</animated.div>
-  ),
-  ({ style }) => (
-    <animated.div style={{ ...style, background: 'lightblue' }}>B</animated.div>
-  ),
-  ({ style }) => (
-    <animated.div style={{ ...style, background: 'lightgreen' }}>
-      C
-    </animated.div>
+    <a.div style={{ ...style, background: 'lightgreen' }}>C</a.div>
   ),
 ]
 
@@ -22,23 +16,17 @@ export default function App() {
   //useEffect(() => void setInterval(fU, 100), [])
 
   const [index, set] = useState(0)
-  const onClick = useCallback(
-    () => set(state => (state === 2 ? 0 : state + 1)),
-    []
-  )
   const transition = useTransition(index, {
     from: { opacity: 0, transform: 'translate3d(100%,0,0)' },
     initial: { opacity: 1, transform: 'translate3d(0%,0,0)' },
     enter: { opacity: 1, transform: 'translate3d(0%,0,0)' },
     leave: { opacity: 0, transform: 'translate3d(-50%,0,0)' },
-    //unique: true,
-    //reset: true,
   })
 
   return (
-    <div className="simple-trans-main" onClick={onClick}>
+    <div className="simple-trans-main" onClick={() => set(state => state + 1)}>
       {transition((props, item) => {
-        const Page = pages[item]
+        const Page = pages[item % 3]
         return <Page style={props} />
       })}
     </div>

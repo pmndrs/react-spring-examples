@@ -256,4 +256,10 @@ return items.map(i =>
     link: 'https://codesandbox.io/embed/rloj7nw3pn',
     tags: ['useSpring'],
   },
+  {
+    name: 'hooks/sorted-clicks',
+    title: 'Sort items by number of clicks',
+    link: 'https://codesandbox.io/embed/rloj7nw3pn',
+    tags: ['useSprings'],
+  },
 ]

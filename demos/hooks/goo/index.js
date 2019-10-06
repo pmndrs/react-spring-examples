@@ -13,8 +13,6 @@ export default function Goo() {
     // Make "x" fast and "y" slow
     config: i => (i == 0 ? fast : slow),
     immediate: i == 0,
-    onStart: () => console.log('onStart:', i),
-    onRest: () => console.log('onRest:', i),
   }))
 
   return (

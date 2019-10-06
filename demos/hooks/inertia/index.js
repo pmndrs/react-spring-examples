@@ -40,7 +40,7 @@ export default function Inertia() {
     y.start({
       y: position,
       onChange: async val => {
-        const vel = y.node.lastVelocity
+        const vel = y.velocity
         if ((val > max && vel > 0) || (val < min && vel < 0)) {
           if (modes.pong) {
             inertia(y.get(), -vel)

@@ -45,8 +45,8 @@ export default [
     tags: ['useSprings'],
   },
   {
-    name: 'hooks/compilation',
-    title: 'Compilation',
+    name: 'hooks/click-drag-doubleclick',
+    title: 'Click Drag Double-Click',
     tags: ['useSprings'],
   },
 ]

@@ -1,0 +1,13 @@
+.square {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  border-radius: 16px;
+}
+
+aside {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 14.5px;
+}

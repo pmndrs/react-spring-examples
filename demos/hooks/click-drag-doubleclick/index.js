@@ -52,7 +52,7 @@ export default function ClickDragDoubleClick() {
   )
 
   return (
-    <>
+    <div className="flex-content">
       <animated.div
         className="square"
         {...gestureBinds()}
@@ -67,6 +67,6 @@ export default function ClickDragDoubleClick() {
         <div>Drag Status: {dragStatus}</div>
         <div>Click Count: {clickCount}</div>
       </aside>
-    </>
+    </div>
   )
 }

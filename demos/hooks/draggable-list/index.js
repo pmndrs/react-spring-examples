@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import clamp from 'lodash/clamp'
-import { useGesture } from 'react-with-gesture'
+import { useDrag } from 'react-use-gesture'
 import { useSprings, animated, to } from 'react-spring'
 import './styles.css'
 
@@ -35,7 +35,7 @@ export default function DraggableList({
   const [springs, setSprings] = useSprings(items.length, fn(order.current))
 
   // Preps a gesture handler which returns drag-deltas, touched/clicked state, etc.
-  const bind = useGesture(({ args: [originalIndex], down, delta: [, y] }) => {
+  const bind = useDrag(({ args: [originalIndex], down, movement: [, y] }) => {
     // Bunch of math to calculate current row and new order, it's unavoidable ¯\_(ツ)_/¯
     const curIndex = order.current.indexOf(originalIndex)
     const curRow = clamp(
@@ -60,10 +60,8 @@ export default function DraggableList({
               boxShadow: shadow.to(
                 s => `rgba(0, 0, 0, 0.2) 0px ${s}px ${2 * s}px 0px`
               ),
-              transform: to(
-                [y, scale],
-                (y, s) => `translate3d(0,${y}px,0) scale(${s})`
-              ),
+              y,
+              scale,
             }}
             children={items[i]}
             {...bind(i)}

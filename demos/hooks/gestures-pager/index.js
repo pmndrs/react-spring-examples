@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import clamp from 'lodash-es/clamp'
 import { useSprings, animated } from 'react-spring'
-import { useGesture } from 'react-with-gesture'
+import { useDrag } from 'react-use-gesture'
 import './styles.css'
 
 const pages = [
@@ -25,8 +25,8 @@ export default function Viewpager() {
     set(i => ({ x: i * width.current, sc: 1, display: 'block' }))
   }, [])
 
-  const bind = useGesture(
-    ({ down, delta: [xDelta], direction: [xDir], distance, cancel }) => {
+  const bind = useDrag(
+    ({ down, movement: [xMovement], direction: [xDir], distance, cancel }) => {
       if (down && distance > width.current / 2)
         cancel(
           (index.current = clamp(
@@ -38,7 +38,7 @@ export default function Viewpager() {
       set(i => {
         if (i < index.current - 1 && i > index.current + 1)
           return { display: 'none' }
-        const x = (i - index.current) * width.current + (down ? xDelta : 0)
+        const x = (i - index.current) * width.current + (down ? xMovement : 0)
         const sc = down ? 1 - distance / width.current / 2 : 1
         return { x, sc, display: 'block' }
       })
@@ -49,13 +49,7 @@ export default function Viewpager() {
       ref={r => r && (width.current = r.getBoundingClientRect().width)}
       className="viewpager-main">
       {props.map(({ x, display, sc }, i) => (
-        <animated.div
-          {...bind()}
-          key={i}
-          style={{
-            display,
-            transform: x.to(x => `translate3d(${x}px,0,0)`),
-          }}>
+        <animated.div {...bind()} key={i} style={{ display, x }}>
           <animated.div
             style={{
               transform: sc.to(s => `scale(${s})`),

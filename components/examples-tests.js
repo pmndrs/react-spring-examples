@@ -1,5 +1,10 @@
 export default [
   {
+    name: 'tests/parallax',
+    title: 'Parallax',
+    tags: ['Parallax'],
+  },
+  {
     name: 'tests/freshtilledsoil',
     title: 'Freshtilledsoil stresstest',
     link: 'https://codesandbox.io/embed/j0y0vpz59',

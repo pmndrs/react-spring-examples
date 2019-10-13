@@ -64,6 +64,7 @@
   "dependencies": {
     "@babel/runtime": "^7.3.1",
     "@react-spring/web": "latest",
+    "@react-spring/parallax": "latest",
     "@types/react": "^16.8.14",
     "@types/styled-components": "^4.1.14",
     "flubber": "^0.4.2",

@@ -11,6 +11,11 @@ export default [
     tags: ['useChain', 'useTransition'],
   },
   {
+    name: 'tests/issue-827',
+    title: 'Issue #827 - Linear gradient',
+    tags: ['useTransition'],
+  },
+  {
     name: 'tests/issue-461',
     title: 'Issue #461 - Remove multiple items',
     tags: ['useTransition'],

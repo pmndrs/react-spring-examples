@@ -11,6 +11,11 @@ export default [
     tags: ['useChain', 'useTransition'],
   },
   {
+    name: 'tests/issue-707',
+    title: 'Issue #707 - Parallax',
+    tags: ['Parallax'],
+  },
+  {
     name: 'tests/issue-827',
     title: 'Issue #827 - Linear gradient',
     tags: ['useTransition'],

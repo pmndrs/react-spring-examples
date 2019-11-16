@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { useDrag } from 'react-use-gesture'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from 'react-spring'
 import './styles.css'
 
 export default function GesturesExample() {
@@ -21,22 +21,16 @@ export default function GesturesExample() {
             <animated.div
               className="gestures-bubble"
               style={{
-                transform: x
-                  .interpolate({
-                    map: Math.abs,
-                    range: [50, 300],
-                    output: [0.5, 1],
-                    extrapolate: 'clamp',
-                  })
-                  .interpolate(x => `scale(${x})`),
+                scale: x.to({
+                  map: Math.abs,
+                  range: [50, 300],
+                  output: [0.5, 1],
+                  extrapolate: 'clamp',
+                }),
                 justifySelf: mx < 0 ? 'end' : 'start',
               }}
             />
-            <animated.div
-              className="gestures-fg"
-              style={{
-                transform: x.interpolate(x => `translate3d(${x}px,0,0)`),
-              }}>
+            <animated.div className="gestures-fg" style={{ x }}>
               Slide me
             </animated.div>
           </animated.div>

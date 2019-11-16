@@ -1,7 +1,9 @@
 import React from 'react'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from 'react-spring'
 import { interpolate } from 'flubber'
 import { GradientPinkRed as Gradient } from '@vx/gradient'
+
+// TODO: fix glitches
 
 const paths = [
   'M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z',
@@ -46,7 +48,7 @@ export default class App extends React.Component {
               from={{ t: 0 }}
               to={{ t: 1 }}
               onRest={this.goNext}>
-              {({ t }) => <animated.path d={t.interpolate(interpolator)} />}
+              {({ t }) => <animated.path d={t.to(interpolator)} />}
             </Spring>
           </g>
         </svg>

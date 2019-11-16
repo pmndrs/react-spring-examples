@@ -1,6 +1,8 @@
 import React from 'react'
-import { Spring, animated, config } from 'react-spring/renderprops'
+import { Spring, animated, config } from 'react-spring'
 import './styles.css'
+
+// TODO: fix (wasn't working prior to this commit: no errors but nothing happened)
 
 const COLORS = [
   'crimson',

@@ -1,9 +1,11 @@
 import React from 'react'
 import { Group } from '@vx/group'
-import { Transition } from 'react-spring/renderprops'
+import { Transition } from 'react-spring'
 
 import Link from './Link'
 import { findCollapsedParent } from './utils'
+
+// TODO: fix
 
 function Links({ links, linkType, layout, orientation, stepPercent }) {
   return (

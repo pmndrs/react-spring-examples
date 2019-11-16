@@ -1,5 +1,5 @@
 import React from 'react'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import {
   HashRouter as Router,
   Switch,
@@ -8,6 +8,8 @@ import {
   Redirect,
 } from 'react-router-dom'
 import './styles.css'
+
+// TODO: fix
 
 const App = () => (
   <Router>

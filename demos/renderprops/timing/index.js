@@ -1,6 +1,8 @@
 import React from 'react'
-import { Keyframes, animated } from 'react-spring/renderprops'
+import { Keyframes, animated } from 'react-spring'
 //import { TimingAnimation, Easing } from '../../../src/addons'
+
+// TODO: fix
 
 const Container = Keyframes.Spring(async next => {
   while (true) {

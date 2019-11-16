@@ -1,9 +1,11 @@
 import React from 'react'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import lorem from 'lorem-ipsum'
 import emoji from 'random-unicode-emoji'
 import classnames from 'classnames'
 import './styles.css'
+
+// TODO: fix or remove
 
 function addItem(state) {
   const items = [...state.items]

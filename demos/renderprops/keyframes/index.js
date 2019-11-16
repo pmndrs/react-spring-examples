@@ -1,9 +1,11 @@
 import 'antd/dist/antd.css'
 import './styles.css'
 import React, { Fragment } from 'react'
-import { Keyframes, animated } from 'react-spring/renderprops'
+import { Keyframes, animated } from 'react-spring'
 import { Avatar, Form, Icon, Input, Button, Checkbox } from 'antd'
 import delay from 'delay'
+
+// TODO: fix
 
 // Creates a spring with predefined animation slots
 const Sidebar = Keyframes.Spring({

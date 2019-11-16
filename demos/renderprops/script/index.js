@@ -1,6 +1,8 @@
 import React from 'react'
-import { Keyframes, animated, config } from 'react-spring/renderprops'
+import { Keyframes, animated, config } from 'react-spring'
 import delay from 'delay'
+
+// TODO: fix or remove
 
 const Content = Keyframes.Spring(async next => {
   // None of this will cause React to render, the component renders only once :-)

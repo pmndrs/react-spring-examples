@@ -2,8 +2,10 @@
 // https://dribbble.com/shots/4138489-Screeners
 
 import React from 'react'
-import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons'
+import { Parallax, ParallaxLayer } from 'react-spring'
 import './styles.css'
+
+// TODO: fix
 
 const Page = ({ offset, gradient, onClick }) => (
   <React.Fragment>

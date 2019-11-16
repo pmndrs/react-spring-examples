@@ -1,6 +1,8 @@
 import React from 'react'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from 'react-spring'
 import './styles.css'
+
+// TODO: fix or remove
 
 const LOREM = `Hello world`
 

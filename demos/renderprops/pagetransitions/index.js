@@ -1,6 +1,8 @@
 import React from 'react'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
 import './styles.css'
+
+// TODO: fix
 
 const pages = [
   style => (

@@ -1,5 +1,9 @@
 import React from 'react'
-import { Spring } from 'react-spring/renderprops'
+import { Spring } from 'react-spring'
+
+// TODO: fix or remove
+// I would advise to remove this example it feels like a duplicate of nativespring
+// - David
 
 const TRIANGLE = 'M20,380 L380,380 L380,380 L200,20 L20,380 Z'
 const RECTANGLE = 'M20,20 L20,380 L380,380 L380,20 L20,20 Z'
@@ -63,7 +67,7 @@ export default class SpringExample extends React.Component {
                 fill={color}
                 fillRule="evenodd"
                 onClick={this.toggle}>
-                <path id="path-1" d={shape} />
+                <animated.path id="path-1" d={shape} />
               </g>
             </svg>
           </div>

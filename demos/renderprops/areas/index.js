@@ -5,7 +5,9 @@ import { scaleTime, scaleLinear } from '@vx/scale'
 import { ParentSize } from '@vx/responsive'
 import { GradientPurpleTeal } from '@vx/gradient'
 import { extent, max } from 'd3-array'
-import { Spring } from 'react-spring/renderprops'
+import { Spring } from 'react-spring'
+
+// TODO: fix
 
 const data = [
   { date: new Date('2018-04-08T12:33:40.624Z'), value: 2110 },

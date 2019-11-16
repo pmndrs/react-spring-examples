@@ -1,5 +1,7 @@
 import React from 'react'
-import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons'
+import { Parallax, ParallaxLayer } from 'react-spring'
+
+// TODO: fix or remove
 
 // Little helpers ...
 const url = (name, wrap = false) =>

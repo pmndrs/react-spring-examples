@@ -1,8 +1,10 @@
 import React from 'react'
-import { Transition, config } from 'react-spring/renderprops'
+import { Transition, config } from 'react-spring'
 import lorem from 'lorem-ipsum'
 import { X } from 'react-feather'
 import { Main, Container, Message, Button, Content, Life } from './styles.js'
+
+// TODO: fix (wasn't properly working before this commit)
 
 let id = 0
 let spring = { ...config.default, precision: 0.1 }

@@ -1,5 +1,7 @@
 import React from 'react'
-import { Transition, animated } from 'react-spring/renderprops'
+import { Transition, animated } from 'react-spring'
+
+// TODO: fix
 
 const defaultStyles = {
   overflow: 'hidden',

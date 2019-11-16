@@ -63,8 +63,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.3.1",
-    "@react-spring/web": "latest",
     "@react-spring/parallax": "latest",
+    "@react-spring/web": "latest",
     "@types/react": "^16.8.14",
     "@types/styled-components": "^4.1.14",
     "flubber": "^0.4.2",
@@ -76,7 +76,7 @@
     "react-feather": "^1.1.6",
     "react-loadable": "^5.5.0",
     "react-spring": "^8.0.5",
-    "react-use-gesture": "^6.0.0-beta.3",
+    "react-use-gesture": "^6.0.14",
     "react-with-gesture": "^4.0.2",
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^4.1.3",

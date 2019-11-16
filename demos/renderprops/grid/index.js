@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { config } from 'react-spring/renderprops'
+import { config } from 'react-spring'
 import Grid from './Grid'
 import { Slug, Fade } from './Primitives'
 import data from './data'

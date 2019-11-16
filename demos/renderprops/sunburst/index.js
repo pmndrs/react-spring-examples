@@ -5,10 +5,12 @@ import { ParentSize } from '@vx/responsive'
 import { arc as d3arc } from 'd3-shape'
 import { scaleLinear, scaleSqrt, scaleOrdinal } from 'd3-scale'
 import { interpolate as d3interpolate } from 'd3-interpolate'
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated } from 'react-spring'
 import Partition from './Partition'
 import data from './data'
 import './styles.css'
+
+// TODO: move to functional components
 
 var color = scaleOrdinal().range([
   '#FE938C',

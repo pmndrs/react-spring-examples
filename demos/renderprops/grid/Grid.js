@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import Measure from 'react-measure'
 import { Transition, animated, interpolate } from 'react-spring/renderprops'
 
+// TODO: convert to functional?
+// IMO it's not a particularly great demo but that's just IMO - David
+
 const styles = {
   outer: { position: 'relative', width: '100%', height: '100%' },
   inner: {

@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { Trail, animated } from 'react-spring/renderprops'
+import { Trail, animated } from 'react-spring'
 import './styles.css'
+
+// TODO: fix (animation is broken)
 
 const items = ['item1', 'item2', 'item3', 'item4', 'item5']
 
@@ -27,7 +29,7 @@ export default function TrailsExample() {
             onClick={() => setToggle(t => !t)}
             style={{
               opacity,
-              transform: x.interpolate(x => `translate3d(${x}%,0,0)`),
+              transform: x.to(x => `translate3d(${x}%,0,0)`),
             }}
           />
         )}

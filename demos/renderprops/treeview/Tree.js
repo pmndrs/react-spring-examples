@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Spring, config, animated } from 'react-spring/renderprops'
+import { Spring, config, animated } from 'react-spring'
 import * as Icons from './icons'
+
+// TODO: fix
+// works but some animations are missing
 
 const styles = {
   tree: {
@@ -103,7 +106,7 @@ export default class Tree extends React.PureComponent {
             opacity: open ? 1 : 0,
             transform: open ? 'translate3d(0px,0,0)' : 'translate3d(20px,0,0)',
           }}
-          {...springConfig && springConfig(open)}>
+          {...(springConfig && springConfig(open))}>
           {style => (
             <animated.div style={{ ...style, ...styles.contents }}>
               {children}

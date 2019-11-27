@@ -2,12 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import DemoGrid from './components/DemoGrid'
 import Demo from './components/Demo'
-import examples from './components/examples-renderprops'
+import examples from './components/examples-hooks'
+// import examples from './components/examples-renderprops'
 // import examples from './components/examples-tests'
 import './styles.css'
 
 let DEBUG = false
-DEBUG = 'chathead'
+// DEBUG = 'multi'
 
 ReactDOM.render(
   <DemoGrid fullscreen={!!DEBUG}>

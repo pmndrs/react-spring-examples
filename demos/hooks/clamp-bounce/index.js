@@ -7,7 +7,6 @@ export default function ClampBounce() {
   const { y } = useSpring({
     y: toggle ? 250 : -250,
     config: { tension: 120, friction: 12, clamp: 2 },
-    onAnimate: console.log,
   })
 
   return (

@@ -30,14 +30,8 @@ export default function App() {
 
   const transition = useTransition(slides[index], {
     from: { opacity: 0 },
-    enter: [
-      { zIndex: 1, immediate: true, onChange: console.log },
-      { opacity: 1, onStart: () => console.log('onEnter(%O)', index) },
-    ],
-    leave: [
-      { zIndex: 0, immediate: true, onChange: console.log },
-      { opacity: 0, onStart: () => console.log('onLeave(%O)', index) },
-    ],
+    enter: [{ zIndex: 1, immediate: true }, { opacity: 1 }],
+    leave: [{ zIndex: 0, immediate: true }, { opacity: 0 }],
     expires: Infinity,
     config: config.molasses,
   })

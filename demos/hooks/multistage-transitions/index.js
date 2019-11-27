@@ -14,15 +14,20 @@ export default function MultiStageTransition() {
       rotateX: 0,
       color: '#8fa5b6',
     },
-    enter: [
-      { opacity: 1, height: 50, innerHeight: 50, reset: true },
+    enter: () => [
+      {
+        opacity: 1,
+        height: 50,
+        innerHeight: 50,
+        color: '#8fa5b6',
+      },
       { rotateX: 180, color: '#28d79f' },
       { rotateX: 0 },
     ],
-    leave: [
+    leave: () => [
       { color: '#c23369', rotateX: 0 },
-      { innerHeight: 0 },
-      { opacity: 0, height: 0 },
+      { opacity: 0, innerHeight: 0 },
+      { height: 0 },
     ],
     update: { color: '#28b4d7' },
   })

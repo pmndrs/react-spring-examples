@@ -39,6 +39,7 @@ export default function App() {
       <Instructions />
       {springs.map(({ y }, i) => (
         <a.div
+          key={i}
           onClick={() => {
             setCounts(counts => {
               counts = [...counts]

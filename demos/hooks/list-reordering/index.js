@@ -15,10 +15,10 @@ export default function App() {
   })
 
   const transition = useTransition(rows, {
-    from: { height: 0, opacity: 0 },
+    from: ({ y }) => ({ y, height: 0, opacity: 0 }),
     leave: { height: 0, opacity: 0 },
     enter: ({ y, height }) => ({ y, height, opacity: 1 }),
-    update: ({ y, height }) => ({ y, height }),
+    update: ({ y }) => ({ y }),
     config: { mass: 5, tension: 500, friction: 150 },
   })
 

@@ -43,6 +43,7 @@ export default function App() {
     update: ({ xy }) => ({ xy }),
     leave: { scale: 0.8, opacity: 0 },
     config: config.stiff,
+    expires: false,
   })
 
   useEffect(() => every(FAST_MODE ? 1000 : 2500, () => set(shuffle)), [

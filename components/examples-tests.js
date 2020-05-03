@@ -1,5 +1,10 @@
 export default [
   {
+    name: 'tests/issue-907',
+    title: 'Issue #907 - Multiple targets',
+    tags: [],
+  },
+  {
     name: 'tests/parallax',
     title: 'Parallax',
     tags: ['Parallax'],

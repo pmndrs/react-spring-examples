@@ -74,16 +74,16 @@ return <animated.div style={{ transform }} children="Slide">`,
     link: 'https://codesandbox.io/embed/r5qmj8m6lq',
     tags: ['useSprings'],
   },
-  {
-    name: 'hooks/inertia',
-    title: 'Inertia',
-    tags: ['useSprings'],
-  },
-  {
-    name: 'hooks/clamp-bounce',
-    title: 'Clamp bounce',
-    tags: ['useSprings'],
-  },
+  // {
+  //   name: 'hooks/inertia',
+  //   title: 'Inertia',
+  //   tags: ['useSprings'],
+  // },
+  // {
+  //   name: 'hooks/clamp-bounce',
+  //   title: 'Clamp bounce',
+  //   tags: ['useSprings'],
+  // },
   {
     name: 'hooks/mouse-parallax',
     title: 'Mouse parallax',
@@ -256,10 +256,10 @@ return items.map(i =>
     link: 'https://codesandbox.io/embed/rloj7nw3pn',
     tags: ['useSpring'],
   },
-  {
-    name: 'hooks/sorted-clicks',
-    title: 'Sort items by number of clicks',
-    link: 'https://codesandbox.io/embed/rloj7nw3pn',
-    tags: ['useSprings'],
-  },
+  // {
+  //   name: 'hooks/sorted-clicks',
+  //   title: 'Sort items by number of clicks',
+  //   link: 'https://codesandbox.io/embed/rloj7nw3pn',
+  //   tags: ['useSprings'],
+  // },
 ]

@@ -26,6 +26,21 @@ export default [
     tags: ['useTransition'],
   },
   {
+    name: 'tests/issue-867',
+    title: 'Issue #867',
+    tags: [],
+  },
+  {
+    name: 'tests/issue-884',
+    title: 'Issue #884',
+    tags: ['immediate'],
+  },
+  {
+    name: 'tests/issue-887',
+    title: 'Issue #887',
+    tags: ['decay', 'useGesture'],
+  },
+  {
     name: 'tests/issue-461',
     title: 'Issue #461 - Remove multiple items',
     tags: ['useTransition'],
@@ -38,6 +53,16 @@ export default [
   {
     name: 'tests/issue-436',
     title: 'Issue #436 - useTransition with "reset" prop',
+    tags: ['useTransition'],
+  },
+  {
+    name: 'tests/issue-747',
+    title: 'Issue #747',
+    tags: ['Transition', 'react-router-dom'],
+  },
+  {
+    name: 'tests/issue-922',
+    title: 'Issue #922',
     tags: ['useTransition'],
   },
   // {

@@ -1,0 +1,39 @@
+* {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+    helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+  background: #ecede7;
+}
+
+#root {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.wrapper {
+  width: 100vw;
+}
+
+.wrapper > div {
+  margin-bottom: 20px;
+  width: 100%;
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+}

@@ -1,0 +1,12 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+li {
+  height: 30px;
+  width: 200px;
+  border: 1px solid;
+  background: gray;
+  list-style-type: none;
+}

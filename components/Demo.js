@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Loadable from 'react-loadable'
 import styled from 'styled-components'
 
@@ -19,7 +19,7 @@ class ErrorBoundary extends React.Component {
 }
 
 export default class Demo extends React.Component {
-  state = { code: undefined, visible: false }
+  state = { visible: false }
   constructor(props) {
     super()
     this.component = Loadable({
@@ -33,19 +33,13 @@ export default class Demo extends React.Component {
 
   setVisible = visible => this.setState({ visible })
 
-  enter = tag =>
-    this.props.code &&
-    this.props.code[tag] &&
-    this.setState({ code: this.props.code[tag] })
-  leave = tag => this.setState({ code: undefined })
-
   render() {
     const {
       title,
       description,
+      code,
       tags,
       link,
-      code,
       overlayCode = true,
       fullscreen = false,
     } = this.props
@@ -62,21 +56,7 @@ export default class Demo extends React.Component {
             </p>
           )}
           {description && <p>{description}</p>}
-          {tags && (
-            <p>
-              {tags.map(tag => (
-                <Tag
-                  key={tag}
-                  children={tag}
-                  onMouseEnter={() => this.enter(tag)}
-                  onMouseLeave={() => this.leave(tag)}
-                  style={{
-                    background: code && code[tag] ? '#5f5f5f' : '#9f9f9f',
-                  }}
-                />
-              ))}
-            </p>
-          )}
+          {tags && <TagList tags={tags} code={code} />}
         </Header>
         <Content>
           <ErrorBoundary>
@@ -96,6 +76,27 @@ export default class Demo extends React.Component {
       </Container>
     )
   }
+}
+
+const TagList = props => {
+  const [code, setCode] = useState(undefined)
+  return (
+    <p>
+      {props.tags.map(tag => (
+        <Tag
+          key={tag}
+          children={tag}
+          onMouseEnter={() =>
+            props.code && props.code[tag] && setCode(props.code[tag])
+          }
+          onMouseLeave={() => setCode(undefined)}
+          style={{
+            background: code && code[tag] ? '#5f5f5f' : '#9f9f9f',
+          }}
+        />
+      ))}
+    </p>
+  )
 }
 
 const Container = styled('div')`

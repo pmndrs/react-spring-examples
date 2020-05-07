@@ -10,6 +10,11 @@ export default [
     tags: ['Parallax'],
   },
   {
+    name: 'tests/springcontext',
+    title: 'SpringContext + useTransition',
+    tags: ['SpringContext', 'useTransition'],
+  },
+  {
     name: 'tests/freshtilledsoil',
     title: 'Freshtilledsoil stresstest',
     link: 'https://codesandbox.io/embed/j0y0vpz59',

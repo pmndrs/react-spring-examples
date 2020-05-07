@@ -26,6 +26,11 @@ export default [
     tags: ['Parallax'],
   },
   {
+    name: 'tests/issue-738',
+    title: 'Issue #738 - Trail',
+    tags: [],
+  },
+  {
     name: 'tests/issue-827',
     title: 'Issue #827 - Linear gradient',
     tags: ['useTransition'],

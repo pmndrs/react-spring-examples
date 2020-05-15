@@ -15,38 +15,46 @@ function MessageHub({
 }) {
   const [refMap] = useState(() => new WeakMap())
   const [cancelMap] = useState(() => new WeakMap())
+
   const [items, setItems] = useState([])
+  const removeItem = key => {
+    setItems(state => state.filter(i => i.key !== key))
+  }
 
   const transition = useTransition(items, {
     key: item => item.key,
     from: { opacity: 0, height: 0, life: '100%' },
     enter: item => async (next, stop) => {
-      if (DEBUG) console.log(`  Entering:`, item.key)
+      if (DEBUG) console.log(`  Entering:`, item)
       cancelMap.set(item, () => {
-        if (DEBUG) console.log(`  Cancelled:`, item.key)
+        if (DEBUG) console.log(`  Cancelled:`, item)
         stop()
-        setItems(state => state.filter(i => i.key !== item.key))
+        removeItem(item.key)
       })
       await next({
         opacity: 1,
         height: refMap.get(item).offsetHeight,
         config,
       })
-      await next({ life: '0%', config: { duration: timeout } })
-      cancelMap.get(item)()
+      await next({
+        life: '0%',
+        config: { duration: timeout },
+      })
+      removeItem(item.key)
     },
     leave: item => async next => {
-      if (DEBUG) console.log(`  Leaving:`, item.key)
+      if (DEBUG) console.log(`  Leaving:`, item)
       await next({ opacity: 0, config })
       await next({ height: 0, config })
     },
   })
 
-  useEffect(
-    () =>
-      void children(msg => setItems(state => [...state, { key: id++, msg }])),
-    []
-  )
+  useEffect(() => {
+    // Ask the render prop for a new message.
+    children(msg => {
+      setItems(state => [...state, { key: id++, msg }])
+    })
+  }, [])
 
   return (
     <Container>

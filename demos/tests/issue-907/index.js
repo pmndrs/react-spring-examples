@@ -5,14 +5,16 @@ import { useSpring } from '@react-spring/core'
 import { a as aW } from '@react-spring/web'
 import { a as aT } from '@react-spring/three'
 
+const a = { ...aW, ...aT }
+
 import './styles.css'
 
 function Box({ y }) {
   return (
-    <aT.mesh rotation-y={y.to(y => (y * Math.PI) / 180)}>
+    <a.mesh rotation-y={y.to(y => (y * Math.PI) / 180)}>
       <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
       <meshStandardMaterial attach="material" color="orange" />
-    </aT.mesh>
+    </a.mesh>
   )
 }
 
@@ -21,7 +23,6 @@ export default function App() {
     loop: true,
     from: { rotateZ: 0 },
     to: { rotateZ: 180 },
-    onChange: console.log,
   })
   return (
     <Canvas colorManagement>
@@ -29,13 +30,11 @@ export default function App() {
       <pointLight position={[10, 10, 10]} />
       <Box y={props.rotateZ} />
       <Dom center>
-        <aW.div
-          style={{
-            transform: props.rotateZ.to(
-              z => (console.log(z), `rotate(${z}deg)`)
-            ),
-          }}
+        <a.div
           className="box"
+          style={{
+            rotateZ: props.rotateZ,
+          }}
         />
       </Dom>
     </Canvas>

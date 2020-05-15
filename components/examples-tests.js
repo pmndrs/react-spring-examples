@@ -10,6 +10,11 @@ export default [
     tags: ['Parallax'],
   },
   {
+    name: 'tests/paused-loop',
+    title: 'Paused Loop',
+    tags: [],
+  },
+  {
     name: 'tests/springcontext',
     title: 'SpringContext + useTransition',
     tags: ['SpringContext', 'useTransition'],

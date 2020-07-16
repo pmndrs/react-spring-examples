@@ -65,7 +65,7 @@
     "decamelize": "^3.2.0",
     "flubber": "^0.4.2",
     "intersection-observer": "^0.5.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "lodash-es": "^4.17.11",
     "lodash-move": "^1.1.1",
     "lodash.clamp": "^4.0.3",
